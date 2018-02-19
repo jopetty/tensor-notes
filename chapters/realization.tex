@@ -1,0 +1,120 @@
+\chapter{The Realization of a Vector Space or: Introduction to the Architecture of Spacetime}
+At this point, it might be useful to have watched a few of the lessons in the ``What is a Manifold?'' series.\\[1ex]
+
+\noindent
+Let's review what we have covered so far.
+If we have a vector space $V$ over a field $F$, we can find a basis $\{e_\mu\}$ for it.
+The creation of that vector space automatically implies the creation of the dual space $V^*$ and its basis $e^\nu$, chosen so that $\langle e^\nu, e_\mu \rangle = \delta^\nu_\mu$.
+If we promote $V$ to a metric space by the inclusion of an inner product $(\cdot,\cdot)$, we automatically get a new object called the metric tensor, $g_{\mu\nu} \in \tps{T}^0_2$, defined so that
+\begin{align*}
+    (\vec{v},\vec{w}) = g_{\mu\nu}(\vec{v} \otimes \vec{w}).
+\end{align*}
+Up until this point, we've only discussed the vector inner product, which acts on elements of $V$ to produce elements of $\mathbb{F}$.
+But as we've already shown, $V^*$ is \emph{also} a vector space in its own right, so when we promote $V$ to becoming a metric space, we should promote $V^*$ as well.
+The question then becomes ``how do we define the inner product for $V^*$?''
+Well, in a similar fashion to the definition of the basis vectors, we'll use $V$ as an inspiration.
+In particular, we'll define the inner product on $V^*$ such that
+\begin{align*}
+    \underbrace{(A_\mu e^\mu, B_\nu e^\nu)}_{\text{$(\cdot, \cdot)$ on $V^*$}} = \underbrace{(A^\mu e_\mu, B^\nu e_\nu)}_{\text{$(\cdot, \cdot)$ on $V$}}.
+\end{align*}
+Just as there is a metric tensor for the vector inner product, we also get to define a metric tensor for the dual space inner product.
+As you might guess, we call this rank $(2,0)$ tensor
+\begin{align*}
+    g^{\mu\nu} e_\mu \otimes e_\nu &: V \otimes V \to \mathbb{F} \\
+               &: \tps{T}^2_0 \to \mathbb{F} \\
+               &: \vb*{\alpha} \times \vb*{\beta} \mapsto (\vb*{\alpha},\vb*{\beta}).
+\end{align*}
+All of this, the basis vectors, the tensor product spaces, the dual space, notions of linear mapping, has been created \emph{de jure}, in a sense, by the creation of a vector space; once we instantiate $V$, everything else pops into existence without any additional work on our part.
+If we promote $V$ to become an inner product space, we automatically get the metric tensors $g_{\mu\nu}$ and $g^{\mu\nu}$.
+We get this because we've asserted that everything plays nicely; since we've created these vector spaces, \emph{of course} its logical that everything falls into place, because that's how we've defined it.
+The objects we've been discussing have been the abstract mathematical ideals of what vectors and covectors and tensors are.
+Now, in physics, we're going to look for \emph{realizations} of a vector space; these are specific objects which act as vector spaces (and are vector spaces in the fullest sense of the word), but which aren't generalized to the degree that we've been discussing.
+A good example of this is the notion of vectors as arrows with magnitude and direction; although that's not what we defined a vector to be in this lesson, they certainly act as vectors in a vector space, since they can be added, have inverses and a zero vector, and are closed under these operations.
+Likewise, the physical notions which we ascribe to these vectors, like forces and acceleration, also form realizations of a vector space.
+
+\section{The Differential Operator}
+Let's imagine a function $f$ in four variables, denoted $x_0$ through $x^3$, so
+\[ f(x^0,x^1,x^2,x^3) = f(x^\mu) = f(x), \]
+where we understand that $x = x^\mu$.
+These elements will be known as \emph{coordinates}.
+We say that $f$ is differentiable if we can write
+\begin{align*}
+    \partial_\mu f \equiv \pdv{f}{x^\mu},
+\end{align*}
+where $\partial_\mu f$ is a symbolic equivalent to the partial derivative of $f$ with respect to $x^\mu$.
+As a quick side note, we choose this notation so that we can contract over it just like with tensors; if you think of $x^\mu$ as the basis and $\partial_\mu$ as the component, then something like $\qty(\partial_\mu f)A^\mu$ could be summed over with Einstein summation.
+Because derivatives are linear operators, we can write that 
+\[ \lambda\partial_\mu f + \lambda\partial_\nu f = \lambda\qty(\partial_\mu + \partial_\nu) f, \]
+where $\lambda \in \mathbb{F}$ and $\qty(\partial_\mu + \partial_\nu)$ is in effect a new differential operator.
+If we wanted to, we could create an operator $\mathcal{L} = a\partial_0 + b\partial_1 + c\partial_2 + d\partial_4$, so $\mathcal{L}$ is a linear combination of our original four partial differential operators.
+Because of the linearity of these differential operators, if we created a set $\{\mathcal{L}\}$ of all possible differential (and therefore linear) operators on a function $f$ of four variables $x^\mu$, this set would be a vector space, with a basis $\{\partial_\mu\}$.
+Let's stipulate that $\lambda$ are all elements of $\mathbb{R}$; then we've just created a realization of a four dimensional, real vector space.
+One interesting thing of note is that $f$ itself is kind of irrelevant here; it doesn't matter if $f$ is a linear function or not, since the differential operator $\partial$ is.
+We care about these operators since they are tools which allow us to create a model of spacetime.
+
+\section{Spacetime}
+Throughout the rest of this lesson, we'll be using the following figure as a graphic model for spacetime.
+This is a canonical way to represent points in spacetime, such as $P, Q, R, S$, in reference to coordinate lines, like $x^1$ and $x^2$.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \node (origin) at (0,0) {}; % Origin node, not shown
+        
+        %% These are the four corners of the "square"
+        \node (a) at (0,0) {};
+        \node (b) at (1,-0.5) {};
+        \node (c) at (5.5,1) {};
+        \node (d) at (4.5,0.5) {};
+        \node (e) at (5,3.5) {};
+        \node (f) at (4,4) {};
+        \node (g) at (1,3.5) {};
+        \node (h) at (0,3) {};
+        
+        %% Curves
+        \draw [name path=line-1] (a) to [bend left=10] (f);
+        \draw [name path=line-2] (b) to [bend left=10] (e);
+        \draw [name path=line-3] (g) to [bend left=10] (c);
+        \draw [name path=line-4] (h) to [bend left=10] (d);
+        
+        %% Points
+        \path [name intersections={of=line-1 and line-3,by=P}];
+        \node [circle, fill=black,inner sep=1.5pt,label=90:$P$] at (P) {};
+        
+        \path [name intersections={of=line-2 and line-3,by=Q}];
+        \node [circle, fill=black,inner sep=1.5pt,label=0:$Q$] at (Q) {};
+        
+        \path [name intersections={of=line-2 and line-4,by=R}];
+        \node [circle, fill=black,inner sep=1.5pt,label=-90:$R$] at (R) {};
+        
+        \path [name intersections={of=line-1 and line-4,by=S}];
+        \node [circle, fill=black,inner sep=1.5pt,label={[shift={(-0.35,-0.4)}]$S$}] at (S) {};
+        
+        %% Line labels
+        \node [label={[shift={(0.55,-0.5)}]$x^1$}] at (a) {};
+        \node [label={[shift={(0.6,0)}]$x^2$}] at (h) {};
+    \end{tikzpicture}
+    \caption{Labeled diagram of our spacetime $\mathcal{S}$.}
+    \label{fig:spacetime_plain}
+\end{figure}
+\noindent
+We can think of the coordinate lines as being like latitude and longitude, or as $(t,x,y,z)$ coordinates.
+In the diagram shown above, we're only depicting two coordinate lines, leaving the $x^0$ and $x^3$ coordinates of the points implicit.
+Note that in reality, we would be giving names to an infinite number of points, not just the four shown here.
+For each of the points shown, there are an associated set of coordinates.
+If we take point $Q$ as an example, we might say that $Q$ has coordinates $(x^0,x^1,x^2,x^3)$, or more succinctly that $Q$ has coordinates $x^\mu$\footnote{Without rigorously defining it at this point, it's good to recall that we usually think of $x^0$ as being time, while $x^1$ through $x^3$ represent various spatial coordinates. This corresponds nicely with the Minkowsky metric signature.}.
+Note that in this case, this doesn't mean that $x^\mu$ is a member of a vector space, since we haven't talked about what the basis vectors would be; we're just using the superscript notation as a shorthand for each of the separate coordinates.
+It's also important to note that we're not talking about any particular coordinate systems here, just a generalized one; it could be spherical or Cartesian or what-not, but for now we really don't care.
+
+Once we've defined a coordinate system, we can start to think of functions on those coordinates.
+We could imagine such a function being given by
+\[ f(x^\mu) = \mathrm{e}^{x^0}\sin x^1 + \frac{(3x^2)^3}{x^3}. \]
+We call any such function a \emph{function on the spacetime}.
+
+\section{Integrating Spacetime and Vector Spaces}
+In the past, we've talked about an abstract vector space $V$ with a basis $\{e_\mu\}$.
+When discussing spacetime, we'll consider a realization of this vector space;
+this realized vector space $V$ will be a four-dimensional, real vector space with basis $\{\partial_\mu\}$.
+Importantly, we won't be creating just one of these vector spaces.
+We will create a separate vector space \emph{for each point in spacetime}.
+We'll label the vector space by the point it's attached to, so the vector space at $Q$ might be $V_P$.
+Because we're creating vector spaces at each point, we also get for free the dual space $V_P^*$ and the infinite number of tensor product spaces associated with $V_P$ and $V^*_P$.

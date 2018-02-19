@@ -1,0 +1,60 @@
+\chapter{Tensor Product Spaces}
+So far we have considered the tensor product space $V^* \otimes V^*$, constructed from a vector space $V$ over a field $\mathbb{F}$.
+Elements of this tensor product space map from $V \times V$ to $\mathbb{F}$, and has 16 basis vectors $e^\mu \otimes e^\nu$, meaning any given tensor can be written as $T_{\mu\nu} e^\mu \otimes e^\nu$.
+We can (almost trivially) generalize this specific type of tensor product space to arbitrary combinations of $V$ and $V^*$.
+This works exactly as you think it does; if we want to map from $V \times V \times V$ to $\mathbb{F}$, we construct a tensor in the following way:
+\[ T_{\lambda\mu\nu} \in V^* \otimes V^*\otimes V^* : V \times V \times V \to \mathbb{F}. \]
+We can do the exact same thing if we want to map 4-tuples of vectors in $V$ to the real numbers; such a tensor would be an element of the tensor product space $V^* \otimes V^* \otimes V^* \otimes V^*$, and would have dimension $n^4$, where $n = \dim(V)$. This is a prime example of why Einstein summation is so useful; once we start talking about tensor product spaces with multiple constituent parts, we start needing to sum over lots of different indices; the tensor $T_{\lambda\mu\nu}$ would more properly be written as
+\[ \sum_{i=0}^{\lambda}\sum_{j=0}^{\mu}\sum_{k=0}^{\nu} T_{\lambda\mu\nu} e^\lambda \otimes e^\mu \otimes e^\nu, \]
+which graphically represents the exact same information as the condensed form as long as we've agreed upon what basis to use beforehand.
+
+\subsection{Types of Simple Tensors}
+So far, we've dealt with tensors which are elements of the $n$\textsuperscript{th} tensor product of the dual space; they map $n$-tuples of \emph{vectors} to a scalar field.
+However, there is nothing stopping us from considering tensors which map $n$-tuples of \emph{covectors} to a scalar field.
+Such tensors would be elements of the $n$\textsuperscript{th} tensor product of the vector space.
+\begin{align*}
+    T_{\mu\nu} &\in V^* \otimes V^* : V \times V \to \mathbb{F} \tag{vectors $\to$ scalar field} \\
+    T^{\mu\nu} &\in V \otimes V : V^* \times V^* \to \mathbb{F} \tag{covectors $\to$ scalar field}
+\end{align*}
+Notice that tensors which map tuples of covectors to a scalar field are identified with superscripts, not subscripts.
+This is because the basis for such a tensor is the tensor product of basis vectors of $V$, not $V^*$, and so to sum over them, we must identify the components by upper indicies, not lower, as shown below:
+\[ T^{\mu\nu} \equiv T^{\mu\nu} e_\mu \otimes e_\nu. \]
+Let's compare how these tensors act on their arguments. First, the ``regular'' tensors we've dealt with up until this point, which map from vectors to the scalar field. Let $T_{\mu\nu}$ be such a tensor, build from $V$ and $\mathbb{F}$, and let it act on the two vectors $A^\alpha e_\alpha,\,B^\beta e_\beta \in V$.
+\begin{align*}
+    T_{\mu\nu} e^\mu \otimes e^\nu \left( A^\alpha e_\alpha, B^\beta e_\beta \right) &= T_{\mu\nu} \langle e^\mu, A^\alpha e_\alpha \rangle \langle e^\nu, B^\beta e_\beta \rangle \\
+    &= T_{\mu\nu} \left( A^\alpha \delta^\mu_\alpha \right) \left( B^\beta \delta^\mu_\beta \right) \\
+    &= T_{\mu\nu}A^\mu B^\nu.
+\end{align*}
+Next, consider the tensor $T^{\mu\nu}$, built from the same $V$ and $\mathbb{F}$ as before. Let $A_\alpha e^\alpha,\,B_\beta e^\beta \in V^*$ be the two arguments for this tensor. 
+\begin{align*}
+    T^{\mu\nu} e_\mu \otimes e_\nu \left(A_\alpha e^\alpha,B_\beta e^\beta\right) &= T^{\mu\nu} \langle A_\alpha e^\alpha, e_\mu \rangle \langle B_\beta e^\beta, e_\nu \rangle \\
+    &= T^{\mu\nu} \left(A_\alpha \delta^\alpha_\mu\right) \left(B_\beta \delta^\beta_\nu\right) \\
+    &= T^{\mu\nu}A_\mu B_\nu.
+\end{align*}
+The two tensors act in almost identical ways, which makes sense as $V$ are $V^*$ are so tightly coupled.
+Notice also that, if we start with a tensor whose components have two lower indices ($T_{\mu\nu}$), we end up summing over the product of it and coefficients with \emph{matching upper} indices ($A^\mu B^\nu$); the same goes for tensors with upper indices; they get coefficients with \emph{matching lower} indices.
+
+\subsection{Mixed Tensors}
+At this point, we've considered tensors which map from the Cartesian product of vectors spaces to a scalar field, and we've considered tensors which map from the Cartesian product of dual spaces to a scalar field; we will now combine them to get a \emph{mixed tensor}, which maps $n$-tuples of vectors and covectors to a field.
+
+Let's start with our trusty vector space $V$ and its dual space $V^*$, both defined over a scalar field $\mathbb{F}$, and construct the following two tensors:
+\begin{align}
+    \tensor{T}{_{\mu}^\nu} e^\mu \otimes e_\nu \in V^* \otimes V : V \times V^* \to \mathbb{F} \\
+    \tensor{T}{^{\mu}_{\nu}} e_\mu \otimes e^\nu \in V \otimes V^* : V^* \times V \to \mathbb{F}\label{eqn:correct-notation}
+\end{align}
+The first maps a vector and a covector ordered pair to $\mathbb{F}$; the second maps a covector and a vector ordered pair to $\mathbb{F}$.
+Although they look very similar, they are \emph{entirely different tensors}.
+The order of the arguments and the order of their definition matters.
+It's also important to note that the scalar components of the tensor convey this information; the order of the indices indicates the order of the tensor products, so
+\begin{align*}
+    \tensor{T}{_{\mu}^\nu} \implies e^\mu \otimes e_\nu, \\
+    \tensor{T}{^{\mu}_\nu} \implies e_\mu \otimes e^\nu.
+\end{align*}
+Let's take a closer look at how a tensor similar to \eqref{eqn:correct-notation} would operate.
+It's first argument must be a covector (remember, linear map) of the form $A_\alpha e^\alpha$, while its second argument must be a vector, like $B^\beta e_\beta$.
+\begin{align*}
+    \tensor{T}{^{\mu}_{\nu}} e_\mu \otimes e^\nu \qty(A_\alpha e^\alpha, B^\beta e_\beta) &= \tensor{T}{^{\mu}_{\nu}} \langle A_\alpha e^\alpha, e_\mu \rangle \langle e^\nu, B^\beta e_\beta \rangle \\
+    &= \tensor{T}{^{\mu}_{\nu}} \qty(A_\alpha \delta^\alpha_\mu) \qty(B^\beta \delta_\beta^\nu) \\
+    &= \tensor{T}{^{\mu}_{\nu}} A_\mu B^\nu
+\end{align*}
+Notice how the order of the remaining coefficients matches that of the tensor's indices: first, $\mu$ and then $\nu$.

@@ -1,0 +1,93 @@
+\documentclass{tufte-book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{tensor}
+\usepackage{kantlipsum}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usetikzlibrary{intersections}
+\usepackage{tikz-cd}
+
+%% Formatting
+\renewcommand{\vec}[1]{\vb{#1}}
+\newcommand{\tps}[1]{\mathcal{#1}}
+
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup\color#1{#2}#3\endgroup
+}
+\makeatother
+%% End Formatting
+
+\title{What the $\tensor{F}{^\mu_{c\kappa}}$ is a Tensor?}
+\author{Jackson Petty}
+\date{Draft of \today}
+
+%%%% Kevin Godny's code for title page and contents from https://groups.google.com/forum/#!topic/tufte-latex/ujdzrktC1BQ
+\makeatletter
+\renewcommand{\maketitlepage}{%
+\begingroup%
+\setlength{\parindent}{0pt}
+
+{\fontsize{14}{14}\selectfont\textit{\@author}\par}
+
+\vspace{1.75in}{\fontsize{36}{54}\selectfont\@title\par}
+
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{\@date}}\par}
+
+\vfill{\fontsize{14}{14}\selectfont\textit{\@publisher}\par}
+
+\thispagestyle{empty}
+\endgroup
+}
+\makeatother
+
+\titlecontents{part}%
+    [0pt]% distance from left margin
+    {\addvspace{0.25\baselineskip}}% above (global formatting of entry)
+    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/ label (label = ``Part I'')
+    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/o label
+    {}% filler and page (leaders and page num)
+    [\vspace*{0.5\baselineskip}]% after
+
+\titlecontents{chapter}%
+    [4em]% distance from left margin
+    {}% above (global formatting of entry)
+    {\contentslabel{2em}\textit}% before w/ label (label = ``Chapter 1'')
+    {\hspace{0em}\textit}% before w/o label
+    {\qquad\thecontentspage}% filler and page (leaders and page num)
+    [\vspace*{0.5\baselineskip}]% after
+%%%% End additional code by Kevin Godby
+
+\begin{document}
+%% Front Matter
+\frontmatter
+\maketitle
+\tableofcontents%
+
+%% Main Matter
+\mainmatter
+\input{chapters/elementary_vector_spaces}
+\input{chapters/maps}
+\input{chapters/dual_space}
+\input{chapters/cartesian_product}
+\input{chapters/tensor_product}
+\input{chapters/tensor_product_spaces}
+\input{chapters/tps_rank}
+\input{chapters/linear_transformations}
+\input{chapters/tps_transformations}
+\input{chapters/metric_spaces}
+\input{chapters/metric_tensor}
+\input{chapters/contraction_and_index_gymnastics}
+\input{chapters/realization}
+\input{chapters/vector_tensor_fields}
+\input{chapters/coord_transforms}
+
+\end{document}

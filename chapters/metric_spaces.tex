@@ -1,0 +1,52 @@
+\chapter{Metric Spaces}
+Up until this point, everything we've discussed has risen out of just the original vector space $V$; we created the dual space, vectors, covectors, tensor product spaces, and basis transformations based only on the original definition of $V$, its scalar field $\mathbb{F}$, and its basis $e_\mu$.
+Now, we're going to add a new object into the mix.
+This will be the \emph{inner product} or \emph{metric}, denoted $g: V \times V \to \mathbb{F}$.
+Vector spaces which are equipped with this function are known as \emph{metric spaces} or \emph{inner product spaces}. 
+We want this function to satisfy some key properties.
+\begin{enumerate}
+    \item $g$ must map an ordered pair of vectors to the scalar field of $V$.
+    \item $g$ must be linear in both arguments; then $g(\lambda\vec{v},\vec{u}) = \lambda g(\vec{v},\vec{u})$ and $g(\vec{v} + \vec{u},\vec{w}) = g(\vec{v},\vec{w}) + g(\vec{u},\vec{w})$.
+    \item[3*.] $g$ must be symmetric; $g(\vec{v},\vec
+    u) = g(\vec{u},\vec{v})$.
+    \item[4*.] $g(\vec{v},\vec{v}) \geq 0$, and $g(\vec{v},\vec{v}) = 0$ if and only if $\vec{v} = \vec{0}$. This is known as a \emph{positive-definite} form. If this rule does not hold, it is a \emph{indefinite} form.
+    If $g$ is positive-definite, then $V$ is a \emph{Reimannian} metric space; if it is indefinite, $V$ is a \emph{pseudo-Reimannian} metric space.
+\end{enumerate}
+These last two conditions are marked with asterisks because the definition of $g$ when used in general relativity differs from the definition of $g$ when discussing pure mathematics.
+In general relativity, we insist that $g$ be symmetric, but we don't require that $g(\vec{v},\vec{v})$ be greater than or equal to 0, so GR is based on a pseudo-Remannian metric space.
+This function is a specific function, not a set of all possible functions like the dual space is.
+By adding this specific function, we promote $V$ to become a metric space.
+
+There are a few notational conventions for an inner product.
+\begin{itemize}
+    \item A named function, like $g(\cdot,\cdot)$.
+    \item Using ordered pairs, like $(\cdot, \cdot)$.
+    \item The Bra-Ket notation of quantum mechanics, $\langle \cdot \mid \cdot \rangle$.
+    \item The braket notation which we have so far used to mean mappings, $\langle \cdot, \cdot \rangle$.
+    \item The elementary vector notation of the dot product, where $\vec{v}\cdot\vec{u}$ is the inner product of $\vec{v}$ and $\vec{u}$.
+\end{itemize}
+Throughout this lesson, we will use the ordered pair notation of an inner product.
+
+\subsection{Creating the Inner Product}
+We define the inner product by what defining what happens to the basis vectors of $V$.
+Since the metric is linear, we can simply factor out the scalars and use these definitions to calculate the inner product of any two vectors.
+In special relativity, we use the \emph{Minkowski metric}\footnote{Some books take the reverse convention, where $\eta_{00} = 1$ and $\eta_{11}, \eta_{22}, \eta_{33} = -1$. This choice between $(-,+,+,+)$ and $(+,-,-,-)$ is known as the \emph{metric signature}.} $\eta$, where 
+\[ (e_\mu,e_\nu) = \eta_{\mu\nu},\quad \eta_{\mu\nu} = 
+    \begin{cases}
+        -1 & \mu = \nu = 0 \\
+        1 & \mu = \nu \in \{1,2,3\} \\
+        0 & \mu \not= \nu
+    \end{cases}.
+\]
+This can be represented by a $4\times4$ matrix with each element having the value of $\eta_{r,c}$, like
+\[
+	\eta = 
+    \begin{bmatrix}
+        -1 & 0 & 0 & 0 \\
+         0 & 1 & 0 & 0 \\
+         0 & 0 & 1 & 0 \\
+         0 & 0 & 0 & 1
+    \end{bmatrix}.
+\]
+In general relativity, however, we don't have the luxury of picking such nice values.
+Instead, we look to what values nature seems to prefer.

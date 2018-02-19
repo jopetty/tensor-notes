@@ -1,0 +1,183 @@
+\chapter{Coordinate Transformations}
+Let's consider our picture of spacetime as we understand in currently.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \node (origin) at (0,0) {}; % Origin node, not shown
+        
+        %% These are the four corners of the "square"
+        \node (a) at (0,0) {};
+        \node (b) at (1,-0.5) {};
+        \node (c) at (5.5,1) {};
+        \node (d) at (4.5,0.5) {};
+        \node (e) at (5,3.5) {};
+        \node (f) at (4,4) {};
+        \node (g) at (1,3.5) {};
+        \node (h) at (0,3) {};
+        
+        %% Curves
+        \draw [name path=line-1] (a) to [bend left=10] (f);
+        \draw [name path=line-2] (b) to [bend left=10] (e);
+        \draw [name path=line-3] (g) to [bend left=10] (c);
+        \draw [name path=line-4] (h) to [bend left=10] (d);
+        
+        %% Points
+        \path [name intersections={of=line-1 and line-3,by=P}];
+        \node [circle, fill=black,inner sep=1.5pt,label=90:$P$] at (P) {};
+        
+        \path [name intersections={of=line-2 and line-3,by=Q}];
+        \node [circle, fill=black,inner sep=1.5pt,label=0:$Q$] at (Q) {};
+        
+        \path [name intersections={of=line-2 and line-4,by=R}];
+        \node [circle, fill=black,inner sep=1.5pt,label=-90:$R$] at (R) {};
+        
+        \path [name intersections={of=line-1 and line-4,by=S}];
+        \node [circle, fill=black,inner sep=1.5pt,label={[shift={(-0.35,-0.4)}]$S$}] at (S) {};
+        
+        %% Line labels
+        \node [label={[shift={(0.55,-0.5)}]$x^1$}] at (a) {};
+        \node [label={[shift={(0.6,0)}]$x^2$}] at (h) {};
+    \end{tikzpicture}
+\end{figure}
+\noindent
+Consider the point $Q$.
+We can say that $Q$ has coordinates $(q^0, q^1, q^2, q^3) = (q^\mu)$.
+Remember that, when dealing with coordinates, the superscript doesn't mean that this transforms like a contravariant vector --- it's just a (canonical) method of indexing the coordinates, and nothing more.
+Right now, we are using the $x^\mu$ coordinate system, so each $q^\mu$ is measured with respect to the coordinate lines we've drawn here.
+We will introduce a shorthand notation to refer to the coordinates of a point with respect to certain coordinates $x^\mu$:
+\[ x^\mu(Q) = x(Q) = (q^0, q^1, q^2, q^3). \]
+If it is understood what dimensions we need to represent the coordinates of a point, or we don't care about the distinction, we can simply shorten $x^\mu(Q)$ to $x(Q)$.
+
+\subsection{The Tangent and Cotangent Spaces}
+We begin with a really simple renaming; up until now, we've been creating our picture of spacetime and then assigning to each point $P$ a vector space $V_P$ a dual space $V^*_P$.
+We defined the basis for $V_P$ to be the collection of differential operators $\{\partial_\mu\}$, and chose a basis $\{\dd{x}^\nu\}$ for $V^*_P$ such that $\langle \dd{x}^\nu, \partial_\mu \rangle = \delta^\nu_\mu$.
+We're now going to make the small change of referring to the vector space as the \emph{tangent space} $T_P$, and the dual space as the \emph{cotangent space} $T^*_P$.
+We do this because the coordinate basis $\{\partial_\mu\},\{\dd{x}^\nu\}$ is composed of differential operators, which are fundamentally related to the concept of tangency.
+Imagine we have some function $\phi(x)$ on our space time and some operator $\mathcal{L} \in T_P$.
+If a vector (our operator $\mathcal{L}$) acts on $\phi$ at a point $P$, then we get the directional derivative of $\phi$ at that point.
+As a more concrete example, let's say that $\phi(x) = (x^0)^2 + \sin x^3$, and our vector field is $\partial_0 + \partial_3$. Then at a point $Q$, we would see a value
+\[ [\partial_0 + \partial_3]\phi(x) = {2x^0 + \cos x^3\mid_Q} = 2q^0 + \cos q^3. \]
+Whenever you see a tangent space, remember that it uses the coordinate basis.
+
+It's really important to see that none of this makes any sense until we've established a coordinate system.
+Because the coordinate basis gives us directional derivatives \emph{in the direction of the coordinate lines}, if we change our coordinate system our vectors change as well.
+
+\subsection{Arbitrary Change of Bases}
+Given a spacetime $\mathcal{S}$, there are an (uncountably) infinite many ways which we can define a coordinate system.
+The entire purpose of general relativity is to show the equivalence of these systems, regardless of the basis chosen or the motion of an observer.
+As it stands now, our spacetime has at every point a tangent space $T_P$ with basis $\{\partial_\mu\}$, a cotangent space $T^*_P$ with basis $\{\dd{x}^\nu\}$, and the tensor product spaces $\tps{T}^p_q$.
+However, as long as we choose a set of linearly independent spanning differential operators from $T_P$, we can create our basis however we like.
+Just as with the bases for our regular vector spaces, we can choose a new basis $\partial_{\mu'}$ such that
+\[ \partial_{\mu'} = \tensor{\Lambda}{_{\mu'}^\mu}\partial_\mu, \]
+where $\tensor{\Lambda}{_{\mu'}^\mu}$ is of course the linear transformation matrix for these two bases.
+Technically, since the tangent spaces are independent for each point, we no longer have a single transformation matrix, but rather a transformation which is itself a function on spacetime, so a more complete equation would read
+\[ \partial_{\mu'} = \tensor{\Lambda}{_{\mu'}^\mu} (x^\mu)\,\partial_\mu. \]
+
+\subsection{New Coordinate System}
+These transformations deal with the case that we want to choose a new basis for our tangent spaces, but we can also consider the case that we change the whole coordinate system itself.
+This can be thought of visually as drawing new lines on our spacetime diagram to represent our new coordinate system.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \node (origin) at (0,0) {}; % Origin node, not shown
+        
+        %% These are the four corners of the "square"
+        \node (a) at (0,0) {};
+        \node (b) at (1,-0.5) {};
+        \node (c) at (5.5,1) {};
+        \node (d) at (4.5,0.5) {};
+        \node (e) at (5,3.5) {};
+        \node (f) at (4,4) {};
+        \node (g) at (1,3.5) {};
+        \node (h) at (0,3) {};
+        
+        %% Curves
+        \draw [name path=line-1] (a) to [bend left=10] (f);
+        \draw [name path=line-2] (b) to [bend left=10] (e);
+        \draw [name path=line-3] (g) to [bend left=10] (c);
+        \draw [name path=line-4] (h) to [bend left=10] (d);
+        
+        %% Alt Curves
+        \draw [name path=alt-1, red] (0,2.16) to [bend left=10] (5.5,3.16);
+        \draw [name path=alt-2, red] (0,0.94) to [bend left=10] (5.5,1.94);
+        \draw [name path=alt-3, red] (1.75,4)  to [bend left=10] (1.44,-0.3);
+        \draw [name path=alt-3, red] (2.75,4)  to [bend left=10] (2.44,-0.3);
+        
+        %% Points
+        \path [name intersections={of=line-1 and line-3,by=P}];
+        \node [circle, fill=black,inner sep=1.5pt,label=90:$P$] at (P) {};
+        
+        \path [name intersections={of=line-2 and line-3,by=Q}];
+        \node [circle, fill=black,inner sep=1.5pt,label=0:$Q$] at (Q) {};
+        
+        \path [name intersections={of=line-2 and line-4,by=R}];
+        \node [circle, fill=black,inner sep=1.5pt,label=-90:$R$] at (R) {};
+        
+        \path [name intersections={of=line-1 and line-4,by=S}];
+        \node [circle, fill=black,inner sep=1.5pt,label={[shift={(-0.35,-0.4)}]$S$}] at (S) {};
+        
+        %% Line labels
+        \node [label={[shift={(0.55,-0.5)}]$x^1$}] at (a) {};
+        \node [label={[shift={(0.6,0)}]$x^2$}] at (h) {};
+        
+        %% Alt-line Labels
+        \node [label={[red]$x^{1'}$}] at (0,1.25) {};
+        \node [label={[red]$x^{2'}$}] at (2.1,-0.3) {};
+    \end{tikzpicture}
+    \caption{Our spacetime $\mathcal{S}$ with coordinate systems $x^\mu$ and $x^{\mu'}$.}
+\end{figure}
+If we change the coordinates from $(x^\mu)$ to $(x^{\mu'})$, we will necessarily change the coordinate basis as well, since $\{\partial_\mu\}$ is defined with respect to $(x^\mu)$.
+Notice, however, that the points themselves don't change, although their coordinates in the respective systems will be different.
+The points don't give a damn about which coordinate system is used.
+
+When we talk about changing between coordinate systems, what we really mean are a pair of isomorphisms, $f$ and $f^{-1}$, which act such that
+\begin{align*}
+    f &: x^\mu \to x^{\mu'}, \\
+    f^{-1} &: x^{\mu'} \to x^\mu.
+\end{align*}
+This means that if we have a point $Q = (q^\mu)$ in the $x^\mu$ system, then $Q$'s coordinates in the $x^{\mu'}$ system will be $f(q^\mu) = (q^{\mu'})$, and that $(q^\mu) = f^{-1} \circ f (q^\mu)$ for all points $Q \in \mathcal{S}$.
+As we previously called $x^\mu (Q) = x(x)$ the coordinates in the $x^\mu$ system, we can say that $x^{\mu'}(Q) = x'(Q)$ are the coordinates in the $x^{\mu'}$ system.
+
+Consider that if we have a function $\phi : x^\mu \to \mathbb{R}$ on our spacetime (perhaps representing the strength of an electric field at each point), then we will also need to be able to write some function $\phi' : x^{\mu'} \to \mathbb{R}$ which gives us the same values for the primed coordinates, so that $\phi(Q) = \phi'(Q)$ for all points.
+If we want to write $\phi$ as a function of the primed coordinates, we can do so using the coordinate transformations we've just established, so 
+\[ \phi(x^\mu) = \phi(f^{-1}(x^{\mu'})) = \phi(x(x^{\mu'})). \]
+
+Even though we've changed the coordinate system of our spacetime, and consequently the basis for our tangent spaces, the tangent spaces themselves really don't change in much the same way that the points in spacetime don't really change.
+All we've done is to rename the points, but we haven't changed any of the physics associated with what goes on at those points.
+What we have done is change the way that vectors at each point are \emph{written}.
+Since $\{\partial_\mu\} \not= \{\partial_{\mu'}\}$, vectors in our tangent space will be written differently depending on which coordinate basis we choose.
+We \emph{can}, however, write these new basis vectors as linear combinations of the old basis vectors, which is where the transformation matrix $\tensor{\Lambda}{_{\mu'}^{\mu}}(x)$ comes in.
+The the previous section, we were free to choose $\Lambda(x)$ to be whatever we wanted, since we were just defining a new set of basis vectors while the underlying coordinate system remained the same.
+Now, however, we've added a constraint.
+We need to find the particular $\Lambda$ which is implied by the transformation $f$ between coordinate systems.
+If we choose a particular coordinate transformation $f$, we are then \emph{forced} to use a particular basis transformation $\Lambda$ to find $\{\partial_{\mu'}\}$.
+
+\subsection{Finding $\Lambda$ from $f$}
+Let's go back to our function $\phi(x(x^{\mu'}))$ on our spacetime.
+Since we want the tangent spaces to remain the same under coordinate transformations, we know that we want
+\[ \partial_{\mu'} \phi = \partial_\mu \phi \frac{\partial}{\partial{x^{\mu'}}}x(x^{\mu'}), \]
+by a simple chain rule expansion.
+Since $\phi$ is an arbitrary function, all we really care about is this inner differential, so
+\[ \partial_{\mu'} = \partial_\mu \pdv{}{x^{\mu'}}x(x^{\mu'}). \]
+This means that 
+
+\[ \Lambda = \pdv{}{x^{\mu'}} x\qty(x^\mu) = \pdv{x^\mu}{x^{\mu'}}, \]
+we we simplify $x^\mu = x(x^{\mu'})$.
+As a  $4\times 4$ matrix, we would write $\Lambda(x)$ as 
+\[ \Lambda = 
+    \begin{bmatrix}
+        \pdv{x^0}{x^{0'}} & & \\
+        & \ddots & \\
+        & & \pdv{x^3}{x^{3'}}
+    \end{bmatrix}.
+\]
+\subsection{Transforming the Cotangent Space}
+Just as with our ordinary vector space and dual space, we transform the basis of the cotangent space using the inverse transformation as that of the tangent space, so $\dd{x}^{\mu'} = \pdv{x^{\mu'}}{x^\mu} \dd{x}^\mu$, and use the matrix $\Lambda^{-1}(x)$.
+
+\subsection{Requisite Formalism}
+When we discussed tensors and vector spaces and tensor product spaces, we did so with a very good degree of formalism.
+The lessons started ``from the ground up,'' so to speak, and so they covered everything in depth.
+By comparison, the latter parts of the lessons dealing with spacetime and vector fields and such have not really been covered to the same rigor.
+Wrapped up in the notion of ``a spacetime $\mathcal{S}$ with a tangent space $T$, a cotangent space $T^*$, and the associated tensor product spaces $\tps{T}^p_q$ affixed to every point'' are the notions of a \emph{manifold}, a \emph{fiber bundle}, and a good deal of topology.
+While understanding all of that isn't technically necessary to understanding the following sections, it does help give a good foundation for why all the hand-wavy arguments we've made so far are correct.
+If you want to dive into a some (albeit distracting) mathematical formalism for these topics, now would be a good time to pause this lesson and switch to the ``What is a Manifold'' series, and then come back to complete sections 16--39.

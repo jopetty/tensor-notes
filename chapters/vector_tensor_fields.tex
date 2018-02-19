@@ -1,0 +1,61 @@
+\chapter{Vector and Tensor Fields}
+So far, we've created a model of spacetime where each point as an associated set of cordinates $x^\mu$, and is given its own four-dimensional, real vector space $V$ with basis $\{\partial_\mu\}$, where $\partial_\mu$ is the partial differential operator with respect to the coordinate $x^\mu$.
+If we take two points, $P$ and $Q$, and examine arbitrary vectors in their respective vector space, we get vectors $A^\mu \partial_\mu \in V_P$ and $B^\mu \partial_\mu \in V_Q$.
+Although these vector spaces are nearly identical, they aren't the same vector space, so we have to way of comparing the two vectors we've just created.
+What distinguishes them are the basis vectors; $\{\partial_\mu\}$ represents the differential operators of functions taken at a certain point, so a more complete notation might be $A^\mu \partial_\mu \mid_P$ and $B^\mu \partial_\mu \mid_Q$.
+Because we can no longer be confined to a single vector space, we need a way of talking about what happens in the uncountably infinite number of vector spaces which exist in our spacetime.
+
+\section{Vector Fields}
+The solution to this problem is to define what is known as a \emph{vector field}.
+Since we've defined a coordinate system $(x^\mu)$ for our spacetime, we can imagine functions of those coordinates such that they are defined for every possible point.
+We can then imagine taking the partial derivatives of these functions with respect to each of these coordinates.
+\[ \partial_\mu f(x^\mu) \tag{defined for every $x^\mu$} \]
+We will use these differential operators $\partial_\mu$ as basis vectors in our vector field.
+A \emph{vector field} is a collection of vector spaces $V_P$ defined at every point $P$ in a \emph{manifold} (like our spacetime), all of which share a common basis, and some function $f$ defined at those points.
+It can be kind of hard to understand the distinction between a vector space and a vector field, so consider this example.
+\begin{itemize}
+    \item A vector field is like the velocity of wind at every point in a room.
+    At each point, we can assign a vector which represents the speed and direction of the wind.
+    While these vectors are all broadly measuring the same thing (the velocity of wind), it doesn't really make sense to add these vectors together, since they don't really live in the same space (what does it mean to add the wind at one location to the wind in another?).
+    \item A vector space is where each of of those vectors live.
+    This is like asking ``at a point $P$, what is every possible direction the wind could be blowing in?''.
+    The vector space at point $P$ is separate from the vector space at point $Q$, since the wind at point $P$ isn't necessarily the same as the wind at point $Q$.
+\end{itemize}
+Mathematically, a vector field is a function
+\begin{align*}
+    f &: \mathcal{S} \to V_\mathcal{S} \\
+      &: P \in \mathcal{S} \mapsto \vec{v} \in V_P
+\end{align*}
+where $S = \{p\}$ is a subset of our spacetime and $V_\mathcal{S}$ is the vector spaces defined for all point $P$ in $S$.
+When we say that $\{\partial_\mu\}$ is the basis for the vectors in our vector field, that means that $\partial_\mu$ will be the derivative with respect to $x^\mu$ of our vector field (function) $f$ at the point $P$ with coordinates $(x^\mu)$.
+In practice, we often leave the function $f$ ambiguous, and treat $\{\partial_\mu\}$ as operators for an arbitrary vector field; this is kind of like how we know what the directions in spacetime might be $(t,x,y,z)$ but we don't know exactly \emph{what} we'll be measuring --- maybe it's wind velocity, maybe it's mass flux, maybe it's whatever vector-valued function we want --- but we know we'll be measuring it's rate of change in the directions of $(t,x,y,z)$.
+In principle, this means that we can think of an arbitrary vector $A^\mu \partial_\mu \in V_P$ in our spacetime as an operator $\mathcal{L}$.
+If a function $f$ comes along, $\mathcal{L}$ can operate on it so that we evaluate the partial derivatives of $f$ at a point $P$, so
+\[ \mathcal{L}f = A^\mu \partial_\mu f \mid_P \;\in \mathbb{R}. \]
+This choice of basis $\{\partial_\mu\}$ is known as the \emph{coordinate basis}.
+
+\section{Tensors Fields}
+We have established that the basis of the vector space $V_P$ at a point $P$ is $\{\partial_\mu\}$;
+If we want to find the basis of the dual space $V^*_P$ at $P$, we need to find a map which takes a differential operator $\partial_\mu$ and gives us a real number.
+We call this basis $\{\dd{x}^\nu\}$, so
+\[ \langle \dd{x}^\nu, \partial_\mu \rangle = \delta^\nu_\mu. \]
+Elements of $\{\dd{x}^\nu\}$ are known as \emph{1-forms}. Just as all of the vectors with basis $\{\partial_\mu\}$ in $V_\mathcal{S}$ formed a vector field, all of the covectors with basis $\{\dd{x}^\mu\}$ in $V^*_\mathcal{S}$ form a covector field.
+Now that we've defined a basis for the dual space, we can consider tensor product spaces which exist at points in our spacetime.
+For example, a $(2,1)$ tensor $T$ would be an element of $V_P \otimes V_P \otimes V^*_P$, and so would have a basis $\partial_\lambda \otimes \partial_\mu \otimes \dd{x}^\nu$.
+Note that we don't really write which point we're evaluating this basis at; in practice this is contextual, not explicit, and remember that we often won't even write the basis in the first place, and  would just refer to the component $\tensor{T}{^{\lambda\mu}_\nu}$.
+One way this is even useful is that we often care about the tensor evaluated at every point in spacetime, not just a particular point, so the ambiguity of the notation can help remind us of that.
+Because we're describing tensors at different points in spacetime, we've now created a \emph{tensor field}; just as a vector field assigned vectors to each point in spacetime, a tensor field does the same with tensors.
+
+\section{Vectors and the Coordinate Basis}
+As a point of clarification, its helpful to go over exactly what each part of a vector $A^\mu \partial_\mu$ in the coordinate basis actually is.
+We said that the basis $\{\partial_\mu\}$ is differential operators with respect to $x^\mu$ acting on some function $f$, but what about the components?
+Well, since $A^\mu$ actually varies with $x^\mu$, we can think of $A^\mu$ as a function on the coordinates $(x^\mu)$.
+Explicitly, this would make a vector
+\[ A^\nu(x^\mu)\,\partial_\nu. \]
+Note that here, $(x^\mu)$ represents a point, whereas $\nu$ represents the coordinate directions, so $A^\nu$ contracts with $\partial_\nu$, not with $(x^\mu)$.
+We could even replace $(x^\mu)$ with a point $(P)$ to get
+\[ A^\nu (P)\, \partial_\nu. \]
+Because of this, we now have the most explicit form of a tensor yet; for a $(2,2)$ tensor $\Gamma$, we can write it as
+\[ \tensor{\Gamma}{^{\alpha\beta}_{\lambda\mu}} = \tensor{\Gamma}{^{\alpha\beta}_{\lambda\mu}} (x^\nu) \,\partial_\alpha \otimes \partial_\beta \otimes \dd{x}^\lambda \otimes \dd{x}^\mu. \]
+In practice, we only write out $\tensor{\Gamma}{^{\alpha\beta}_{\lambda\mu}}$, and we have to infer the rest.
+Thanks, Index Gymnastics\footnote{If you haven't read any David Sedaris, I \emph{highly} recommend it.}!

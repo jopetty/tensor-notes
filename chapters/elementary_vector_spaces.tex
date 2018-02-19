@@ -1,0 +1,54 @@
+\chapter{Elementary Vector Spaces}\label{chap:elem_vec_spaces}
+
+A \emph{vector} $\vec{v}$ is an element of a special set $V$, known as a \emph{vector space}. In physics or computer science, we're used to thinking of vectors as certain things, like arrows in space with a magnitude and direction, or ordered arrays of items. However, it's best for the purposes of this lesson to think of vectors in the mathematical sense; that is, as ``vectors.''
+Vectors can be anything really, from lists of numbers to sound waves to cats, as long as you apply the appropriate definitions for how the vector should act.
+So, really, the best definition of a vector is: a vector is something that acts like vector, which lives in a special space called a vector space. I know that definition isn't really comforting for now. If it helps, you can think of them as cats.
+\section{Properties}
+Vector spaces have special properties:
+\begin{itemize}
+    \item Vector spaces must be endowed with a binary operation $+ : V \times V \to V$, called addition.
+    This is defined for any two elements in the vector space, and the result is also an element of the vector space.
+    We write this as $\vec{v} + \vec{u} = \vec{w} \in V,\;\forall \vec{v},\vec{u} \in V$.
+    This implies that vector spaces are closed under addition.
+    Note that this operation is defined \emph{only} for vectors from the same vector space --- we cannot add two vectors from different vector spaces.
+    \item Vector spaces are defined over a \emph{field} $\mathbb{F}$.
+    This field determines the scalars by which we can multiply a vector. Just as with addition, a vector space must be closed under scalar multiplication $\cdot : \mathbb{F} \times V \to V$, so $\lambda\vec{v} \in V,\;\forall \lambda \in \mathbb{F}$.
+    We say that a vector space is taken \emph{over} a field $\mathbb{F}$; if $\mathbb{F} = \mathbb{R}$, then we say that $V$ is a \emph{real} vector space, and if $\mathbb{F} = \mathbb{C}$, it is a \emph{complex} vector space. Note that this has \emph{nothing} to do with the component values of $V$.
+    If the components of a vector $\vec{v}$ are complex-valued but the scalars are only real numbers, then it is still a real vector space.
+    In physics, there are usually only four different kinds of vector spaces that are usually dealt with: real vector spaces (as are used in General Relativity), complex vector spaces (used in Quantum mechanics), quaternionic, and octonionic.
+    These last two, however, aren't fields, which changes how they are used. Really, we needn't concern ourselves with them.
+    \item Vector spaces have a specific \emph{dimension} associated with them. We can think of dimension as any of the following equivalent concepts:
+        \begin{itemize}
+            \item If I draw a random vector $\vec{q}$ out of a vector space $V$, what is the \emph{minimum} number of other random vectors in $V$ I need to linearly combine to get $\vec{q}$?
+            \item The minimum number of linearly independent vectors necessary to span the entire vector space.
+            \item The cardinality of a basis for the vector space.
+        \end{itemize}
+    A vector space can be finite-dimensional or infinite-dimensional. In General Relativity, we usually deal with four dimensional vector spaces.
+\end{itemize}
+
+\section{Axioms}
+Now that we have those operations well defined, a vector space must also satisfy the following axioms:
+\begin{align}
+    \vec{u} + (\vec{v} + \vec{w}) &= (\vec{u} + \vec{v}) + \vec{w} \tag{Associativity of addition} \\
+    \vec{v} + \vec{u} &= \vec{u} + \vec{v} \tag{Commutativity of addition} \\
+    \exists\, 0_V \in V: \vec{v} + 0_V &= \vec{v}\;\forall \vec{v} \in V \tag{Additive identity} \\
+    \forall \vec{v},\; \exists\, {-\vec{v}}: \vec{v} + -\vec{v} &= 0_V \tag{Additive inverse} \\
+    \lambda(\kappa\vec{v}) &= (\lambda\kappa)\vec{v} \tag{Compatability of scalar multiplication} \\
+    1_{\mathbb{F}}\vec{v} &= \vec{v} \tag{Multiplicative identity of $\mathbb{F}$} \\
+    \lambda(\vec{v} +\vec{u}) &= \lambda\vec{v} + \lambda\vec{u} \tag{Distributivity of scalar multiplication} \\
+    (\lambda + \kappa)\vec{v} &= \lambda\vec{v} + \kappa\vec{v} \tag{Distributivity of field addition}
+\end{align}
+
+\section{Linear Independence}
+A set of vectors $U \subset V$ is \emph{linearly independent} iff no vector in the subset can be written as a linear combination of other vectors in the set. That is, for all $\vec{u} \in U$, $u \not= \sum \lambda_i\vec{a}_i$. The \emph{span} of a set of vectors is every possible linear combination of vectors in that set, denoted $\text{Span}(U)$. Vector spaces have basis associated with them. A \emph{basis} is a minimally spanning set of linearly independent vectors.
+This means that $\text{Span}(B) = V$, for some basis $B$ of $V$.
+Some semi-obvious observations:
+\begin{itemize}
+    \item All basis of the same vector space have the same dimension.
+    \item $\abs{B} = \dim(V)$ (we said this already).
+    \item If $\dim(V) = n$, then a set of less than $n$ vectors can never span $V$, and a set of more than $n$ vectors can never be linearly independent.
+    \item If two vector spaces have the same dimension, then the differences between them are essentially superficial, and we can say that they are \emph{isomorphic}.
+    This means that we can establish a one-to-one correspondence between vectors in each space (a bijection) and operations in one correspond to operations in another (so it is structure preserving).
+    \item At this point, we only have one binary operation on vectors: addition. We can add two vectors, but we (currently) have no notion of what a dot product or a cross product are.
+    We also have no notion of vector magnitude.
+\end{itemize}

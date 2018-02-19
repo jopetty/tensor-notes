@@ -1,0 +1,113 @@
+\chapter{Linear Transformations}
+Let's pause the discussion of tensor product spaces and dual spaces, and consider again the underlying vector space $V$ with a basis $\{e_\mu\}$.
+The only thing to recall about the dual space is that $V^*$ has a basis $\{e^\nu\}$ chosen such that $\langle e^\nu, e_\mu \rangle = \delta^\nu_\mu$.
+As with any vector space, in order for $\{e_\mu\}$ to be a basis, it must
+\begin{enumerate}
+    \item span $V$, and
+    \item be a linearly independent set.
+\end{enumerate}
+There are infinitely many such basis which meet the requirements, so our choice of basis for $V$ is rather arbitrary\footnote{As an example, take any basis of $V$, and scale one component by a scalar factor from $\mathbb{F}$ to create a new, valid basis.}.
+As long as $\{e_\mu\}$ is a basis for $V$, any vector $\vec{v} \in V$ can be written as a linear combination of basis vectors, so
+\[ \vec{v} = A^\mu e_\mu,\;A \in \mathbb{F}. \]
+But suppose that we have another basis for $V$, called $\{\hat{e}_\nu\}$.
+We can also write $\vec{v}$ as a linear combination of these basis vectors,
+so
+\[ \vec{v} = B^\nu \hat{e}_\nu,\;B \in \mathbb{F}. \]
+The vector itself hasn't changed when we represent it in different ways, so we know that these two linear expressions must be equal to one another.
+If we want, we can change from one basis to the other, and we do so via \emph{linear transformations}.
+
+\subsection{Change of Basis}
+Let's begin by writing one set of basis vectors in terms of the other.
+Our goal will be to write each member of $\{\hat{e}_\nu\}$ in terms of linear combinations of $\{e_\mu\}$.
+To do so, we say that each element of $\{\hat{e}_\nu\}$ can be represented by the sum of scalar products of each element of $\{e_\mu\}$, so
+\begin{align*}
+    \hat{e}_0 &= \tensor{\Lambda}{_0^0}e_0 + \tensor{\Lambda}{_0^1}e_1 + \cdots \\
+    \hat{e}_1 &= \tensor{\Lambda}{_1^0}e_0 + \tensor{\Lambda}{_1^1}e_1 + \cdots \\
+    &\vdots \\
+    \hat{e}_\nu &= \tensor{\Lambda}{_\nu^\mu}e_\mu.
+\end{align*}
+Here, the lower index $\nu$ on $\Lambda$ tells us which of $\{\hat{e}_\nu\}$ we are writing, and the upper index $\mu$ tells us which of our original basis vectors $e_\mu$ we are scaling.
+If you treat this as a linear algebra problem, it becomes apparent that $\tensor{\Lambda}{_\nu^\mu}$ is a matrix representing the linear transformation between two vectors.
+For the sake of brevity, if we were to hold that $V$ is a four dimensional vector space, then we could write the entire transformation as
+\[
+    \begin{bmatrix}
+        \hat{e}_0 \\
+        \hat{e}_1 \\
+        \hat{e}_2 \\
+        \hat{e}_3
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        \tensor{\Lambda}{_0^0} & \tensor{\Lambda}{_0^1} & \tensor{\Lambda}{_0^2} & \tensor{\Lambda}{_0^3} \\
+        \tensor{\Lambda}{_1^0} & \tensor{\Lambda}{_1^1} & \tensor{\Lambda}{_1^2} & \tensor{\Lambda}{_1^3} \\
+        \tensor{\Lambda}{_2^0} & \tensor{\Lambda}{_2^1} & \tensor{\Lambda}{_2^2} & \tensor{\Lambda}{_2^3} \\
+        \tensor{\Lambda}{_3^0} & \tensor{\Lambda}{_3^1} & \tensor{\Lambda}{_3^2} & \tensor{\Lambda}{_3^3}
+    \end{bmatrix}
+    \begin{bmatrix}
+        e_0 \\
+        e_1 \\
+        e_2 \\
+        e_3
+    \end{bmatrix},
+\]
+where the lower index $\nu$ represents the row and the upper index $\mu$, the column.
+
+However, it's very important to note that this transformation matrix is \emph{not} a tensor, even though it kind of looks like one.
+One way we can tell that this is not a tensor is that the indices are in the wrong order; all tensors have upper indices first, and then lower indices.
+Another key difference is the lack of a basis; while $\{\hat{e}_\nu\}$ and $\{e_\mu\}$ are basis vectors of $V$, $\tensor{\Lambda}{_\nu^\mu}$ is not a vector in this space, and we haven't defined any basis for $\tensor{\Lambda}{_\nu^\mu}$, or even a tensor product space for $\tensor{\Lambda}{_\nu^\mu}$ to live in.
+Finally, recall that tensors are maps between the Cartesian products of covectors and vectors to a scalar field,
+\[ \tensor{T}{^\mu_\nu} : V^* \times V \to \mathbb{F}, \]
+while $\tensor{\Lambda}{_\nu^\mu}$ is mapping between vectors and other vectors in the same space, so 
+\[ \tensor{\Lambda}{_\nu^\mu} : V \to V. \]
+
+\subsection{Transforming Vectors}
+Suppose we have a vector $\vec{w}$, written equivalently in our two different bases as $A^\mu e_\mu$ and $B^\nu \hat{e}_\nu$.
+Since we defined a linear transformation $\hat{e}_\nu = \tensor{\Lambda}{_\nu^\mu} e_\mu$ to change between basis vectors, we can rewrite this as
+\[ \vec{w} = B^\nu \hat{e}_\nu = B^\nu \tensor{\Lambda}{_\nu^\mu} e^\mu. \]
+Now $\vec{w}$ is written in terms of the $e_\mu$ basis, and since we already know that $\vec{w} = A^\mu e_\mu$, we know that
+\[ A^\mu = B^\nu\tensor{\Lambda}{_\nu^\mu}. \]
+This allows us to transform the coefficients between bases, along with basis vectors, which means that we can transform \emph{any} vector now using this method.
+
+\subsection{Reverse Transformations}
+We've just demonstrated how to go from a $e_\mu$ to $\hat{e}_\nu$, and from $B^\nu$ to $A^\mu$, but what if we want to go the other direction?
+Well, since all these transformations are \emph{linear}, and therefore \emph{invertable}, we can simply use the inverse matrix $\tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu}$ to do just that.
+This gives us a nice table to show how various structures transform using $\Lambda$:
+\[
+    \begin{matrix}
+        \hat{e}_\nu = \tensor{\Lambda}{_\nu^\mu} e_\mu &  & e_\mu = \tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu}\hat{e}_\nu \\
+        & & \\
+         A^\mu = B^\nu\tensor{\Lambda}{_\nu^\mu} & & B^\nu = A^\mu \tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu}
+    \end{matrix}
+\]
+Entries in the first column transform using $\Lambda$, while entries in the second transform using $\Lambda^{-1}$.
+The first row shows how the basis vectors transform, and the second row shows how the coefficients transform. 
+Its important to notice a few things here.
+\begin{itemize}
+    \item When we invert the transformation $\Lambda$, the indices switch places; in $\tensor{\Lambda}{_\nu^\mu}$, $\nu$ is the lower index while $\mu$ is the upper, while in $\tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu}$, $\mu$ is the lower index while $\nu$ is the upper.
+    \item Basis vectors transform with $\Lambda$ or $\Lambda^{-1}$ on the left, while coefficients transform with it on the right; this is because the coefficients are scalars, while the basis vectors are vectors, and so $\Lambda$ acts as an operator.
+    \item In each change of basis, we need to change both the basis vector and the coefficient. However, basis vectors and coefficients in the same transformation use \emph{different} matrices; we don't just use $\Lambda$ to go from the $\nu$ vectors to the $\mu$ vectors, we need both $\Lambda$ and $\Lambda^{-1}$.
+    Consider that if we want to change $B^\nu \hat{e}_\nu$ into a $\mu$ basis, we use the following two transformations to do so:
+    \[
+        \begin{matrix}
+            \hat{e}_\nu = \tensor{\Lambda}{_\nu^\mu} e_\mu &  & \mathcolor{gray}{e_\mu = \tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu}\hat{e}_\nu} \\
+            & & \\
+             \mathcolor{gray}{A^\mu = B^\nu\tensor{\Lambda}{_\nu^\mu}} & & B^\nu = A^\mu \tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu}
+        \end{matrix}
+    \]
+    To see why we need both $\Lambda$ and $\Lambda^{-1}$ in a single transformation, let's go back to our vector $\vec{w}$, and transform it entirely from the $\nu$ basis back to the $\mu$ basis.
+    \[
+        \vec{w} = B^\nu \hat{e}_\nu = A^\mu \tensor{\left(\Lambda^{-1}\right)}{_\mu^\nu} \tensor{\Lambda}{_\nu^\mu} e_\mu = A^\mu e_\mu.
+    \]
+    Notice how the $\Lambda$ and $\Lambda^{-1}$ end up right next to one another, and because they are inverses of one another, they cancel out, leaving us with just the resultant components and basis vectors.
+    If we want to end up with no matrices in our final vector, we have to use both $\Lambda$ and $\Lambda^{-1}$ to transform between bases.
+    \item $\Lambda$ and $\Lambda^{-1}$ are arbitrary choices based on the direction of transformation we define.
+    The above table is based on going from $\hat{e}_\nu$ basis vectors to $e_\mu$ basis vectors, but we could just as easily have defined $\Lambda$ in a way that we go from $e_\mu$ back to $\hat{e}_\nu$.
+    However, regardless of which way we choose, notice that the components of vectors always transform using the inverse transformation as the basis vectors do; if $e_\mu$ uses $\Lambda$, then $A^\mu$ will use $\Lambda^{-1}$, and if $\Hat{e}_\nu$ uses $\Lambda^{-1}$, then $B^\nu$ will use $\qty(\Lambda^{-1})^{-1} = \Lambda$.
+\end{itemize}
+
+\subsection{Covariance and Contravariance}
+The fact that components of basis vectors transform using the inverse transformation is where we get the notion of \emph{covariance} and \emph{contravariance}; a \emph{covariant} object is anything that transforms in the same way as the basis vectors, while a \emph{contravariant} object is anything that transforms in the inverse way.
+This distinction is one of the major benefits of using the Einstein summation convention, since it let's us know at a glance how a given object will transform: anything with lower indices, like basis vectors, will transform covariantly, while anything with upper indices, like scalar components, will transform contravariantly.
+
+Note that contravariant $\not=$ `uses $\Lambda^{-1}$'.
+Contravariance is always defined with respect to how the basis transforms.
+If the basis transforms with $\Lambda$, then a contravariant object \emph{will} use $\Lambda^{-1}$, but if the basis transforms using $\Lambda^{-1}$, then a contravariant object will transform with $\Lambda$.

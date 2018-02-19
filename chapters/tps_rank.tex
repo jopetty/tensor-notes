@@ -1,0 +1,16 @@
+\chapter{Rank of a Tensor Product Space}
+The \emph{rank} of a tensor product space, along with all the tensors which live in it, is the number of vector spaces and dual spaces involved in creating it.
+This is quite simple when the tensors are simple tensors (there are only vector spaces or only dual spaces involved).
+In that instance, we just count the number of spaces, and put that number where the indices on the component would normally go.
+Consider these two tensors,
+\begin{align*}
+    &T^\mu e_\mu \in V : V^* \to \mathbb{F}, \\
+    &T_\nu e^\nu \in V^* : V \to \mathbb{F}.
+\end{align*}
+Both are known as rank 1 tensors, since only a single space is involved.
+
+Rank gets slightly more complicated if the tensors are mixed.
+In this instance, we just put number in both indices, so a tensor with a single vector space and a single dual space would be a rank $(1,1)$. We say such a tensor would live in the tensor product space $\tps{T}^1_1$. The problem comes when trying to identify the ordering of these two spaces; should $\tps{T}^1_1$ mean $V \otimes V^*$ or $V^* \otimes V$? The answer is simply a matter of convection. Tensor product spaces \emph{always} begin with vector spaces, and then move on to dual spaces.
+This means that a rank $(p,q)$ tensor product space $\tps{T}^p_q$ will be as follows:
+\[ \tps{T}^p_q = \underbrace{V \otimes V \otimes \cdots}_{\text{$p$ times}} \underbrace{V^* \otimes V^* \otimes \cdots}_{\text{$q$ times}}. \]
+While tensor product spaces with the vector and dual spaces in different orders (even all shuffled about) still transform in exactly the same way, we insist on only defining tensors to have the proper order of $V \otimes V^*$ to rectify the ambiguity of ordering.

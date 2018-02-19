@@ -1,0 +1,148 @@
+\chapter{Contraction and Index Gymnastics}
+\emph{Index gymnastics} is the process by which we try and keep track of indices of tensors when written without their basis.
+Suppose we had a tensor $A \in \tps{T}^3_2(V)$.
+Formally, we would write this $(3,2)$ tensor as
+\[ \tensor{A}{^{\alpha\beta\gamma}_{\mu\nu}} e_\alpha \otimes e_\beta \otimes e_\gamma \otimes e^\mu \otimes e^\nu : V^* \times V^* \times V^* \times V \times V \to \mathbb{F}, \]
+which is kind of ridiculous to carry around\footnote{Remember, what's written here is the \emph{shortened} version using Einstein summation. The truly complete version would also have 5 summation signs at the beginning.}, especially when the component $\tensor{A}{^{\alpha\beta\gamma}_{\mu\nu}}$ contains all the information we need.
+
+As we've written it, $A$ is a mapping from $\tps{T}^3_2$ to the scalar field $\mathbb{F}$; however, we've just shown that we can also `trick' this tensor into producing other objects if we give it a different number of arguments than it is expecting.
+For example, if we were to give $A$ a single covector $\Lambda$ as an argument, we've suddenly created a map which takes two covectors and two vectors to $\mathbb{F}$, so 
+\[ A(\Lambda,\cdot,\cdot\mid\cdot,\cdot) \in \tps{T}^2_2, \]
+where $\mid$ is just a divider to visually separate the covector arguments from the vector arguments.
+Notice that this isn't the only way we can make $A$ a $\tps{T}^2_2$ tensor; we can use $\Lambda$ as any of the covector arguments expected, and create an entirely new rank $(2,2)$ tensor, like
+\[ A(\cdot,\Lambda,\cdot\mid\cdot,\cdot) \in \tps{T}^2_2. \]
+
+\section{The Universal Property}
+Suppose we have a multilinear map $Z$ defined as
+\[ B : \underbrace{V \times V \times \cdots}_{\text{$p$ times}}\underbrace{V^* \times V^* \times \cdots}_{\text{$q$ times}} \to U, \]
+where $U$ is some vector space.
+The \emph{Universal Property} says that if such a map exists, then we are guaranteed to have a multilinear map
+\[ \beta : \underbrace{V \otimes V \otimes \cdots}_{\text{$p$ times}}\underbrace{V^* \otimes V^* \otimes \cdots}_{\text{$q$ times}} \to U, \]
+and that these will be the same map, meaning that their results will always be the same.
+Graphically, the universal property can be written as
+\begin{center}
+\begin{tikzcd}
+V \times V^* \arrow[rr] \arrow[rrdd, "B"'] &  & V \otimes V^* \arrow[dd, "\beta", dashed] \\
+ &  &  \\
+ &  & U
+\end{tikzcd}
+\end{center}
+for a simplified example with only a single vector-dual space product.
+
+\begin{proof}[Proof of the Universal Property]
+We will prove it holds for a simple case, and by linearity it will hold for all more general cases.
+Suppose we have a vector space $V$ over a scalar field $\mathbb{F}$.
+Let $\{e_\mu\}$ be the basis for $V$ and $\{e^\nu\}$ be a basis for its dual space, $V^*$.
+Let $B$ be a map defined as 
+\[ B : V \times V^* \to U, \]
+where $U$ is some vector space.
+It must be the case that $B(e_\mu, e^\nu) \in U$.
+Let $\beta$ then be the map
+\[ \beta : \tps{T}^1_1 \to U \]
+defined in such a way that $\beta(e_\mu \otimes e^\nu) = B(e_\mu,e^\nu)$.
+Since we've defined how $\beta$ operates on the basis $e_\mu \otimes e^\nu$, we can represent any member of $V \otimes V^*$ as a linear combination of that basis, and since $B$ and $\beta$ are linear, we can write the result of any argument for $\beta$ in this way.
+\end{proof}
+
+\section{Contraction of Bases}
+To see why we care at all about the Universal Property, consider the notion of a map we defined at the very beginning of this lesson,
+\begin{align*}
+    \langle \cdot, \cdot \rangle : V \times V^* \to \mathbb{F}.
+\end{align*}
+We know this map exists because the creation of $V$ \emph{automatically} implies the creation of the dual space $V^*$, so we must have the concept of multilinear mapping for any vector space.
+By the Universal Property, we know that there must automatically be a function $\beta$ such that
+\begin{align*}
+    \beta &: \tps{T}^1_1 (V) \to \mathbb{F} \\
+      &: V \otimes V^* \to \mathbb{F}.
+\end{align*}
+While this example might seem trivial, we can use $\langle \cdot, \cdot \rangle$ to build more complicated mappings.
+Suppose we have some mapping
+\begin{align*}
+    B &: V^p \times V^{*q} \to \tps{T}^{p-1}_{q-1} \\
+      &: \underbrace{V \times V \times \cdots}_{\text{$p$ times}}\underbrace{V^* \times V^* \times \cdots}_{\text{$q$ times}} \to \tps{T}^{p-1}_{q-1}.
+\end{align*}
+By the Universal Property, we must be able to find some equivalent function $\beta$ such that
+\[ \beta : \tps{T}^p_q \to \tps{T}^{p-1}_{q-1}. \]
+This is what is known as a \emph{contraction}; we can jump between tensor product spaces by lowering both indices by 1.
+Obviously for this to occur, both $p$ and $q$ must be greater than 0.
+One way we can do this is by taking a vector-covector pair from $\tps{T}^p_q$ and applying the linear map to them; that is,
+\[ B^i_j : e_1 \times \cdots e_i \times \cdots e_p \times e^1 \times \cdots e^j \times \cdots e^q \mapsto \langle e^j, e_i \rangle e_{\alpha \not= i} \otimes e^{\gamma \not= j}. \]
+This map $B^i_j$ rips out the $i$\textsuperscript{th} basis vector and $j$\textsuperscript{th} basis covector from $\tps{T}^p_q$, applies them to one another, and multiplies the result by the tensor product of all remaining basis vectors.
+Since we defined this map $B$ to act on the Cartesian product of the vector spaces and dual spaces, we must be able to find our equivalent function $\beta^i_j$ which does the same thing, but maps from the tensor product space, so
+\[ \beta^i_j : \tps{T}^p_q \to \tps{T}^{p-1}_{q-1} : e_1 \otimes \cdots e_p \otimes e^1 \otimes \cdots e^q \mapsto \langle e^j, e_i \rangle e_{\alpha \not=1}\otimes e^{\gamma \not= j}. \]
+Note that because we can vary $1 \leq i \leq p$ and $1 \leq j \leq q$, this isn't the only possible mapping we could have created using this method.
+In fact, there will always be $pq$ possible mappings.
+We refer to the specific contraction as $\beta^i_j$ or the $(i,j)$ contraction.
+If we want to contract more than once, we can simply apply this mapping more than once, so a jump from $\tps{T}^p_q$ to $\tps{T}^{p-\alpha}_{q-\alpha}$ can be achieved by some mapping
+\[ \gamma = \underbrace{\beta^{k}_{l} \circ \cdots \circ \beta^i_j}_{\text{$\alpha$ times}} \]
+applied to the original tensor product space.
+
+\section{Contraction of Generalized Tensors}
+Let's consider an arbitrary tensor 
+\[
+T = \tensor{T}{^{i_1\cdots i_\alpha \cdots i_p}_{j_1 \cdots j_\beta \cdots j_q}} e_{i_1} \otimes \cdots e_{i_\alpha} \cdots \otimes e_{i_p} \otimes e^{j_1} \otimes \cdots e^{j_\beta} \cdots \otimes e^{j_q}.
+\]
+We want to find the map 
+\begin{align*}
+C^{i_\alpha}_{j_\beta} &: \tps{T}^p_q \to \tps{T}^{p-1}_{q-1} \\ 
+                       &: T \mapsto \tensor{T}{^{i_1 \cdots i_p}_{j_1 \cdots j_q}} \langle e^{j_\beta}, e_{i_\alpha} \rangle e_{i \not= \alpha } \otimes e^{j \not= \beta} \\
+                       &: T \mapsto \tensor{T}{^{i_1\cdots i_\alpha \cdots i_p}_{j_1\cdots i_\alpha \cdots j_q}} e_{i \not= \alpha } \otimes e^{j \not= \beta}.
+\end{align*}
+Notice that we end up with an $i_\alpha$ in both the superscript and subscript indices of $T$.
+Recall this happens because $\langle e^{j_\beta}, e_{i_\alpha} \rangle = \delta^{j_\beta}_{i_\alpha}$.
+As we will see, this causes that index to be dropped in the resultant tensor component.
+
+\section{Symmetric and Antisymmetric Tensors}
+A tensor is \emph{symmetric} if we can rearrange the vector arguments, and rearrange the covector arguments (but not switch the two).
+For example, a tensor $T$ is symmetric if
+\[ \tensor{T}{^{\alpha\beta}_{\gamma\delta}} = \tensor{T}{^{\beta\alpha}_{\delta\gamma}}. \]
+A tensor is \emph{antisymmetric} if switching any pair of arguments switches the sign of the tensor, so 
+\[ T_{\alpha\beta\gamma} = -T_{\beta\alpha\gamma} = T_{\beta\gamma\alpha}. \]
+If we refer to any pair of arguments $\alpha\beta$ of a tensor $T$, we can find its \emph{symmetric part} and \emph{antisymmetric part} by the following:
+\begin{align*}
+    T_{(\alpha\beta)\gamma} &= \frac{1}{2}\qty(T_{\alpha\beta\gamma} + T_{\beta\alpha\gamma}) \tag{Symmetric part} \\
+    T_{[\alpha\beta]\gamma} &= \frac{1}{2}\qty(T_{\alpha\beta\gamma} - T_{\beta\alpha\gamma}). \tag{Antisymmetric part}
+\end{align*}
+This means that a tensor is the sum of its symmetric and antisymmetric parts, so $T_{\alpha\beta\gamma} = T_{(\alpha\beta)\gamma} + T_{[\alpha\beta]\gamma}$.
+
+\section{Index Gymnastics}
+As you can see, it is very cumbersome to carry around the basis vectors in each calculation.
+Instead of writing everything out, we can keep track of all the necessary information by just shuffling the indices of the tensor component.
+The simplest form of index gymnastics is raising or lowering a single index of a tensor.
+For example, if we have a contravariant tensor $A^\mu$ (written fully $A^\mu e_\mu \in V$), we can create an associated covariant tensor $A_\nu$ by lowering the index.
+In fact, we've already done this with the metric tensor; consider Equation~\eqref{eqn:metric-index-lowering}, where we saw that
+\[ g_{\mu\nu} e^\mu \otimes e^\nu \qty(A^\alpha e_\alpha) \mapsto A^\mu g_{\mu\nu} e^\nu \in V^*. \]
+If we drop the basis vectors from this equation and look only at what is happening to the components, we get the equivalent 
+\[ g_{\mu\nu}\qty(A^\alpha e_\alpha) \mapsto A^\mu g_{\mu\nu}, \]
+which we often simply abbreviate as $A_\nu$; this means that the metric tensor can be used to lower the index of a tensor via $g_{\mu\nu}A^\mu \mapsto A^\nu$.
+This is an example of how contraction reduces the indices when they are the same: because this tensor component as $\mu$ as both an upper and lower index, it gets summed over, and we are left with a component with only $\nu$ as a lower index.
+Note that it may be more proper to write this as $g_{\nu\mu}A^\mu$, so that the summed-over indices are adjacent; we are allowed to do this because the metric tensor (in most derivations) is symmetric.
+
+\section{Removing Bases}
+We've already been doing a bit of index gymnastics when we refer to a tensor with multiple vector spaces in its tensor product space by only a single component with multiple indices.
+Consider this simple example of a $\tps{T}^2_0$ tensor,
+\[ T^{\mu\nu} = A^\mu e_\mu \otimes B^\nu e_\nu. \]
+Perhpas more properly, we should write this tensor as $A^\mu B^\nu$, but because these are both simply field elements, we can simplify them into a single component $T^{\mu\nu}$.
+Notice, however, that when we keep the basis vectors around, we can change the order of the components without changing the tensor, because of the commutativity of scalar multiplication.
+\[ A^\mu B^\nu e_\mu \otimes e_\nu = B^\nu A^\mu e^\mu \otimes e^\nu. \]
+While we swap the components, we keep the basis vectors in place, because $e^\mu \otimes e^\nu \not= e^\nu \otimes e^\mu$.
+This means that when we drop the basis vectors, we have to remember that the order of the indices is now important, because although $A^\mu B^\nu = B^\nu A^\mu$, $T^{\mu\nu} \not= T^{\nu\mu}$, as the latter implies a different ordering of the basis vectors.
+Consider another example, from a tensor with a single vector and covector basis.
+Say we had a tensor
+\[ A^\mu B_\nu e_\mu \otimes e^\nu. \]
+If we combine the components in the appropriate way, we get a $\tps{T}^1_1$ tensor $\tensor{T}{^\mu_\nu}$, but if we combine them in the wrong order, we get $\tensor{T}{_\nu^\mu}$, which isn't technically even a tensor.
+
+\section{Contraction \& Index Gymnastics}
+Recall that when we learned how to contract tensors, we saw that we ended up with a scenario where an upper and lower index were equal, causing that index to be removed and dropping the tensor from a $(p,q)$ tensor to a $(p-1,q-1)$ tensor.
+Without worrying about the basis vectors, we can write this much more succinctly as
+\[ \tensor{T}{^{\alpha\beta\gamma}_{\lambda\mu\nu}} \mapsto \tensor{T}{^{\alpha\beta\gamma}_{\alpha\mu\nu}} \mapsto \tensor{M}{^{\beta\gamma}_{\mu\nu}}. \]
+
+\section{The Metric Tensor as a Metric}
+We we learn about the inner product, its often in conjunction with the idea of the magnitude of a vector; in linear algebra, we learn that $\vec{a}\cdot\vec{a} = \norm{a}^2$.
+Even the name \emph{metric tensor} implies that we can use it to get a notion of measure.
+To show how this works in tensor form, lets consider the metric tensor $g_{\mu\nu}$ acting on two copies of an arbitrary vector:
+\begin{align*}
+    g_{\mu\nu}\qty(A^\alpha e_\alpha, A^\alpha e_\alpha) &= A^\alpha A^\alpha g_{\mu\nu} \langle e^\mu, e_\alpha \rangle \langle e^\nu, e_\alpha \rangle \\
+    &= A^\alpha A^\alpha g_{\alpha\alpha} \\
+    &= A^\alpha A_\alpha. \tag{via Index Contraction}
+\end{align*}
+This is where we get the notion that $\vec{a}\cdot\vec{a} = \norm{a}^2$ in the world of tensors.

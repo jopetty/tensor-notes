@@ -1,0 +1,45 @@
+\chapter{How to Make a Map}\label{chap:maps}
+\section{Notation}
+Let's start with a four dimensional real vector space $V$.
+Associated with it, we have some set of basis vectors, so we can say that any vector $\vec{m} = a\vec{w} + b\vec{v} + c\vec{p} + d\vec{q}$.
+Out of the infinite possibilities for a basis for $V$, let's pick an arbitrary basis, and call each element $e$, using a \emph{subsecript} to identify which of the four basis vectors it is; so our basis is $\{e_0, e_1, e_2, e_3\}$.
+If we want to talk about a general basis vector, we'll call it $\{e_\mu\}$. Notice that the identifier for basis vectors in on the \emph{bottom}. This will be a very important idea.
+
+Let's consider a vector $\vec{A} \in V$; We can write $\vec{A}$ in the following way.
+\begin{align*}
+    \vec{A} &= ae_0 + be_1 + ce_2 + de_3 \\
+            &= A^0e_0 + A^1e_1 + A^2e_2 + A^3e_3 \\
+            &= \sum A^\mu e_\mu \\
+            &= A^\mu e_\mu.
+\end{align*}
+This is an example of \emph{Einstein Summation Convention}, where adjacent upper and lower indices are automatically summed over.
+
+\section{Maps}
+Let's create two vector spaces, a four dimensional real vector space $V$ with basis $\{e_\mu\}$ and a 10 dimensional real vector space $W$ with basis $\{f_\mu\}$.
+Now let's create a \emph{linear}\footnote{Recall that a linear map $\Lambda : D \to R$ satisfies the following: $\Lambda(0_D) = 0_R$, $\Lambda(\vec{u} + \vec{v}) = \Lambda(\vec{u}) + \Lambda(\vec{v})$, and $\Lambda(\alpha\vec{v}) = \alpha\Lambda(\vec{v})$.} map $\Lambda$ which takes any vector in $V$ and assigns it to a vector in $W$.
+We write this as $\Lambda : V \to W$.
+If we want to show how this map acts on a particular domain vector, we can write it in several different ways:
+\begin{align*}
+    \Lambda : V &\to W \tag{Definition} \\
+    \Lambda\vec{v} &= \vec{w} \tag{Operator notation} \\
+    \Lambda(\vec{v}) &= \vec{w} \tag{Function notation} \\
+    \langle \Lambda,\vec{v} \rangle &= \vec{w}. \tag{Bracket notation}
+\end{align*}
+This last notation is the most useful one for discussing tensors.
+It has several benefits for us: if we write something like $\langle \Lambda, \cdot \rangle$, it looks like a function waiting to accept a certain vector in order to get an output $\vec{w}$; conversely, if we write $\langle \cdot, \vec{v} \rangle$, it looks like we're looking for a certain map to act upon $\vec{v}$ in order to get $\vec{w}$.
+
+Now let's consider what happens when we apply this map to each of the basis vectors $e_\mu$:
+\begin{align*}
+    \langle \Lambda, e_0 \rangle &= 3f_1 + 2f_4 + 5f_9 \\
+    \langle \Lambda, e_1 \rangle &= \pi f_3 + f_0 \\
+    \langle \Lambda, e_2 \rangle &= f_2 \\
+    \langle \Lambda, e_3 \rangle &= f_3 + f_5 + f_7 + f_9
+\end{align*}
+Obviously, this is a rather random mapping. The outputs here are completely arbitrary. The important thing to note is that this map is linear, so $\langle \Lambda, \alpha\vec{v} + \beta\vec{p} \rangle = \alpha\langle \Lambda, \vec{v} \rangle + \beta\langle \Lambda, \vec{p} \rangle$. Notice that, in the left hand side of the equation, the addition operation is the one from $V$ ($+_V$), while in the right hand side, it is the addition operation from $W$ ($+_W$), since $\langle \Lambda, \alpha\vec{v} \rangle,\langle \Lambda, \beta\vec{p} \rangle \in W$.
+
+If we apply $\Lambda$ to the arbitrary vector $\vec{A}$ we defined previously, we see that 
+\begin{align*}
+    \langle \Lambda, \vec{A} \rangle &= \langle \Lambda, A^\mu e_\mu \rangle \\
+    &= A^\mu \langle \Lambda, e_\mu \rangle
+\end{align*}
+Since we already know how $\langle \Lambda, e_\mu \rangle$ transforms, we can express what happens to any vector under $\Lambda$ this way.

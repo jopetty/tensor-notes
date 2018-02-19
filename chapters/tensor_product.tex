@@ -1,0 +1,42 @@
+\chapter{The Tensor Product}
+Consider the Cartesian product of a vector space $V$ and itself, $V \times V$. A \emph{tensor}~$T$ is a \emph{multilinear map} from this product and the field $\mathbb{F}$ over which the vector spaces are taken, where multilinear simply means that the map is linear in each component of the domain. Explicitly, it acts in the following way:
+\[ T : V \times V \to \mathbb{F} : (\vec{v}, \vec{w}) \mapsto \langle \Lambda, \vec{v} \rangle\langle \Gamma, \vec{w} \rangle. \]
+Since we already have tools which map vectors in $V$ to $\mathbb{F}$ in a linear fashion --- covectors from the dual space --- we define a tensor by using combinations of these covectors using the \emph{tensor product}~$\otimes$.
+Consider the Cartesian produt $V \times V$; if we want to send the ordered pair $(\vec{v}, \vec{w})$ to $\mathbb{F}$, we take two covectors, $\beta$ and $\alpha$, and take their tensor product to get
+\[ \beta \otimes \alpha : V \times V \to \mathbb{F} : (\vec{v},\vec{w}) \mapsto \langle \beta, \vec{v} \rangle\langle \alpha, \vec{w} \rangle. \]
+Several things:
+\begin{itemize}
+    \item First, notice that the result of multilinear tensors are multiplied together, where the multiplication is the multiplication operation defined for that field.
+    \item This is only a single type of tensor --- there are many others, including regular covectors and regular vectors.
+    \item This tensor is an element of $V^* \times V^*$, while it takes an argument of $V \times V$.
+\end{itemize}
+
+\section{Addition \& the Tensor Product Space}
+Consider again the vector space $V$ and its dual space $V^*$. Let's consider two tensors, $\alpha \otimes \beta$ and $\gamma \otimes \delta$, both elements of $V^* \times V^*$.
+Since tensors are multilinear maps, we want tensor addition to act linearly. 
+We define tensor addition to act as follows:
+\begin{align*}
+    [\alpha \otimes \beta + \gamma \otimes \delta](\vec{v},\vec{w}) &= \alpha\otimes\beta (\vec{v},\vec{w}) + \gamma\otimes\delta(\vec{v},\vec{w}) \\
+    &= \langle \alpha, \vec{v} \rangle\langle \beta, \vec{w} \rangle + \langle \gamma, \vec{v} \rangle\langle \delta,\vec{w} \rangle
+\end{align*}
+Likewise with addition, if we introduce scalar factors from $\mathbb{F}$, we define tensors such that
+\[\lambda_1\alpha\otimes\lambda_2\beta(\vec{v},\vec{w}) = \lambda_1\lambda_2\langle \alpha, \vec{v} \rangle\langle \beta, \vec{w} \rangle.\]
+Since the components of a tensor are members of the dual space, if we choose them to be the zero maps, we have created the `zero tensor'. 
+This, combined with the above two facts, means that the set of all possible tensors of a certain number of components (called rank) form a vector space. 
+This space is called the \emph{tensor product space}, and since all elements of vector spaces are vectors, this means that tensors are vectors \emph{and} vectors are tensors!
+
+\section{Review \& Formalism}
+We begin with a vector space $V$ over a field $\mathbb{F}$ with a basis $\{e_\nu\}$, which implies the existence of a dual space $V^*$ with a basis $\{e^\mu\}$.
+This gives us a special type of tensor product space, $ V^* \otimes V^*$, whose elements are bilinear in $V \times V$.
+Because $V^* \otimes V^*$ is a vector space, it has addition and scalar multiplication, and is also taken over the same field $\mathbb{F}$.
+We select the basis of the vector and dual space such that
+\[ \langle e^\mu, e_\nu \rangle = \delta^\mu_\nu. \]
+Since the tensor product space is a vector space, it too has a basis.
+As tensors in $V^* \otimes V^*$ are composed of linear maps from $V^*$, the basis for the tensor product space is $e^\mu \otimes e^\nu$.
+Note that, in this basis, the index $\mu$ does not always equal $\nu$.
+These tensors can be defined by
+\[ A_\mu e^\mu \otimes B_\nu e^\nu : V \times V \to \mathbb{F} : (C^\alpha e_\alpha, D^\beta e_\beta) \mapsto A_\mu C^\mu B_\nu D^\nu. \]
+Note that if our original vector space as four dimensional, the tensor product space will have dimension $4 \times 4 = 16$, which means that there are 16 basis vectors encapsulated by $e^\mu \otimes e^\nu$.
+Because of the linearity of tensors, we can simplify the way we write a tensor into a single coefficient, using multiple indicies:
+\[ A_\mu e^\mu \otimes B_\nu e^\nu \equiv T_{\mu\nu} e^\mu \otimes e^\nu. \]
+Because Physicists and Mathematicians are fundamentally lazy people, and more importantly because \emph{any} tensors from the same tensor product space specified with the same vectors will differ only by the coefficient, we often adopt the convention of dropping the basis when discussing a specific tensor, and refer to it only by this coefficient; the above tensor would be called $T_{\mu\nu}$. These leading coefficients are often called the tensor's \emph{components}.

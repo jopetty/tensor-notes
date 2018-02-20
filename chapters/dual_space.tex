@@ -1,5 +1,5 @@
 \chapter{Dual Spaces}
-Consider a vector space $V$ over a field $\mathbb{F}$ with basis $\{e_\mu\}$.
+Consider a vector space $V$ over a field $\mathbb{F}$ with basis $\{\vec{e}_\mu\}$.
 The \emph{Dual Space} of $V$, denoted $V^*$, is the set of all linear maps from $V$ to $\mathbb{F}$:
 \begin{align*}
     V^* = \{\phi : \phi(\vec{v}) \in \mathbb{F}, \phi \text{ is linear}\}.
@@ -14,26 +14,26 @@ This dual space is itself a vector space, since we can give it a concept of addi
 \end{itemize}
 
 \subsection{Dual Basis}
-When we create a vector space $V$ with basis $\{e_\mu\}$, we automatically create a dual space $V^*$; since the dual space is also a vector space, it must have a basis. We call this basis $\{e^\mu\}$, similar to the basis for the original vector space, but with a superscript index instead of a subscript.
-Like our choice for the basis of $V$, the choice of $\{e^\mu\}$ is arbitrary.
+When we create a vector space $V$ with basis $\{\vec{e}_\mu\}$, we automatically create a dual space $V^*$; since the dual space is also a vector space, it must have a basis. We call this basis $\{\vec{e}^\mu\}$, similar to the basis for the original vector space, but with a superscript index instead of a subscript.
+Like our choice for the basis of $V$, the choice of $\{\vec{e}^\mu\}$ is arbitrary.
 But, while there isn't a specific basis created, we can choose our bases selectively.
-Remember that $e^\mu$ are \emph{linear maps} which can act upon $e_\mu$;
+Remember that $\vec{e}^\mu$ are \emph{linear maps} which can act upon $\vec{e}_\mu$;
 We want to choose the basis for our dual space such that
 \begin{align*}
-    \langle e^0, e_0 \rangle &= 1, \\
-    \langle e^1, e_1 \rangle &= 1, \\
+    \langle \vec{e}^0, \vec{e}_0 \rangle &= 1, \\
+    \langle \vec{e}^1, \vec{e}_1 \rangle &= 1, \\
     &\vdots \\
-    \langle e^\mu, e_\mu \rangle &= 1,
+    \langle \vec{e}^\mu, \vec{e}_\mu \rangle &= 1,
 \end{align*}
 but 
 \begin{align*}
-    \langle e^0, e_1 \rangle &= 0, \\
+    \langle \vec{e}^0, \vec{e}_1 \rangle &= 0, \\
     &\vdots \\
-    \langle e^\mu, e_\nu \rangle &= 0.
+    \langle \vec{e}^\mu, \vec{e}_\nu \rangle &= 0.
 \end{align*}
 We can generalize this statement to
 \begin{align*}
-    \langle e^\mu, e_\nu \rangle = \delta^\mu_\nu,
+    \langle \vec{e}^\mu, \vec{e}_\nu \rangle = \delta^\mu_\nu,
 \end{align*}
 where $\delta^\mu_\nu$ is the Kronecker delta function,
 \[
@@ -43,33 +43,33 @@ where $\delta^\mu_\nu$ is the Kronecker delta function,
         0 & \mu \not= \nu
     \end{cases}.
 \]
-This choice is also rather arbitrary --- we just like dealing with the case when $\langle e^\mu, e_\nu \rangle = 1$ iff $\mu = \nu$, and is zero otherwise. It's also important to realize that exactly \emph{which} linear maps $\{e^\mu\}$ are is not specified; although the creation of $V$ implies the creation of $V^*$, there isn't (yet) a way to relate vectors in $V$ to vectors in $V^*$.
+This choice is also rather arbitrary --- we just like dealing with the case when $\langle \vec{e}^\mu, \vec{e}_\nu \rangle = 1$ if and only if $\mu = \nu$, and is zero otherwise. It's also important to realize that exactly \emph{which} linear maps $\{\vec{e}^\mu\}$ are is not specified; although the creation of $V$ implies the creation of $V^*$, there isn't (yet) a way to relate vectors in $V$ to vectors in $V^*$.
 
 \subsection{The Dual Dual Space}
 Since the dual space $V^*$ is a vector space in its own right, it too must have a dual space, the set of all linear maps which send a vector in $V^*$ to $\mathbb{F}$.
 If we look at the bracket notation for what we're really doing, it becomes obvious what this space must be:
 \begin{align*}
     \langle \Lambda, \cdot \rangle &: V \to \mathbb{F} \\
-    \langle \cdot, A^\mu e_\mu \rangle &: V^* \to \mathbb{F}.
+    \langle \cdot, A^\mu \vec{e}_\mu \rangle &: V^* \to \mathbb{F}.
 \end{align*}
 If \emph{covectors} go from $V$ to $\mathbb{F}$, then \emph{vectors} go from $V^*$ to $\mathbb{F}$, so $V^{**} = V$.
-Just like how we can build any vector in $V$ using Einstein summation over the basis of $V$, we can build a basis for $V^*$ in the same way. Since the basis vectors for $V^*$ are of the form $\{e^\mu\}$, we write an arbitrary vector in the dual space as
-\[ \Lambda = A_\mu e^\mu \in V^*. \]
+Just like how we can build any vector in $V$ using Einstein summation over the basis of $V$, we can build a basis for $V^*$ in the same way. Since the basis vectors for $V^*$ are of the form $\{\vec{e}^\mu\}$, we write an arbitrary vector in the dual space as
+\[ \Lambda = A_\mu \vec{e}^\mu \in V^*. \]
 This makes the above definition for linear maps
 \begin{align*}
-    \langle A_\mu e^\mu, \cdot \rangle &: V \to \mathbb{F}, \\
-    \langle \cdot, A^\mu e_\mu \rangle &: V^* \to \mathbb{F}.
+    \langle A_\mu \vec{e}^\mu, \cdot \rangle &: V \to \mathbb{F}, \\
+    \langle \cdot, A^\mu \vec{e}_\mu \rangle &: V^* \to \mathbb{F}.
 \end{align*}
 
 \subsection{Covariance and Contravariance}
 If we start with a vector space $V$ and its corresponding dual space $V^*$ (again, which is which is a rather arbitrary choice, sense \emph{both} are vector spaces), we say that elements of the vector space $V$ are \emph{vectors}, and they are said to vary \emph{contravariantly}, while elements of the dual space $V^*$ are \emph{covectors} which vary \emph{contravariantly}.
 
 \subsection{Arbitrary Vectors and Mappings}
-Imagine we have an arbitrary covector $B^\mu e_\mu$, and an arbitrary vector $A_\nu e^\nu$ upon which this covector acts. We write this as 
-\[ \langle B_\mu e^\mu, A^\nu e_\nu \rangle. \]
+Imagine we have an arbitrary covector $B^\mu \vec{e}_\mu$, and an arbitrary vector $A_\nu \vec{e}^\nu$ upon which this covector acts. We write this as 
+\[ \langle B_\mu \vec{e}^\mu, A^\nu \vec{e}_\nu \rangle. \]
 Since these mappings are linear, we can factor out the coefficients, leaving
-\[ B_\mu A^\nu \langle e^\mu, e_\nu \rangle. \]
-Since we know that $\langle e^\mu, e_\nu \rangle = \delta^\mu_\nu$, we can simplify this into
-\[ B_\mu A^\nu \langle e^\mu, e_\nu \rangle = B_\mu A^\nu \delta^\mu_\nu = B_\mu A^\mu. \]
+\[ B_\mu A^\nu \langle \vec{e}^\mu, \vec{e}_\nu \rangle. \]
+Since we know that $\langle \vec{e}^\mu, \vec{e}_\nu \rangle = \delta^\mu_\nu$, we can simplify this into
+\[ B_\mu A^\nu \langle \vec{e}^\mu, \vec{e}_\nu \rangle = B_\mu A^\nu \delta^\mu_\nu = B_\mu A^\mu. \]
 This means that we can refer to the result of the covector-vector applications by just the coefficients, as long as we define the dual basis by the delta function.
 Note also that $B_\mu A^\mu$ is a member of the field $\mathbb{F}$ over which $V$ and $V^*$ are taken.

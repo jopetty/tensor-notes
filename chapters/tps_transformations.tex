@@ -1,40 +1,40 @@
 \chapter{Tensor Product Space Transformations}
-Let's consider our good ol' vector space $V$ with basis $\{e_\mu\}$ and its dual space $V^*$ with basis $\{e^\nu\}$.
-We now know that $\{e_\mu\}$ will transform covariantly, while $\{e^\nu\}$ will transform contravariantly.
-We always choose $\{e^\nu\}$ such that $\langle e^\nu, e_\mu \rangle = \delta^\nu_\mu$.
-Now that we've learned about change of basis transformations, let's construct alternate bases for $V$ and $V^*$, called $\{\hat{e}_\mu\}$ and $\{\hat{e}^\nu\}$, again with the property that $\langle \hat{e}_\nu, \hat{e}_\mu \rangle = \delta_\mu^\nu$.
-Let's also say for the sake of argument that $\{\hat{e}_\mu\}$ transforms into $\{e_\mu\}$ using a transformation $\Lambda$, so we then have that
-\[ \Hat{e}_\nu = \tensor{\Lambda}{_\nu^\mu} e_\mu. \]
-Because the bases of the dual space are contravariant, we know that the equivalent transformation for $\{\Hat{e}^\nu\}$ and $\{e^\nu\}$ would be
-\[ \Hat{e}^\nu = \tensor{\qty(\Lambda^{-1})}{_\mu^\nu} e^\mu. \]
+Let's consider our good ol' vector space $V$ with basis $\{\vec{e}_\mu\}$ and its dual space $V^*$ with basis $\{\vec{e}^\nu\}$.
+We now know that $\{\vec{e}_\mu\}$ will transform covariantly, while $\{\vec{e}^\nu\}$ will transform contravariantly.
+We always choose $\{e^\nu\}$ such that $\langle \vec{e}^\nu, \vec{e}_\mu \rangle = \delta^\nu_\mu$.
+Now that we've learned about change of basis transformations, let's construct alternate bases for $V$ and $V^*$, called $\{\unit{e}_\mu\}$ and $\{\unit{e}^\nu\}$, again with the property that $\langle \unit{e}_\nu, \unit{e}_\mu \rangle = \delta_\mu^\nu$.
+Let's also say for the sake of argument that $\{\unit{e}_\mu\}$ transforms into $\{\vec{e}_\mu\}$ using a transformation $\Lambda$, so we then have that
+\[ \unit{e}_\nu = \tensor{\Lambda}{_\nu^\mu} \vec{e}_\mu. \]
+Because the bases of the dual space are contravariant, we know that the equivalent transformation for $\{\unit{e}^\nu\}$ and $\{\vec{e}^\nu\}$ would be
+\[ \unit{e}^\nu = \tensor{\qty(\Lambda^{-1})}{_\mu^\nu} \vec{e}^\mu. \]
 
 To understand how transformations affect tensor product spaces, let's construct a rank $(1,2)$ tensor,
-\[ \tensor{T}{^\lambda_{\mu\nu}} e_\lambda \otimes e^\mu \otimes e^\nu, \]
-and transform it from the $e$ basis into the $\Hat{e}$ basis.
-This goes in the direction $e \to \Hat{e}$, which is the opposite way we've gone previously, but the technique remains the exact same.
+\[ \tensor{T}{^\lambda_{\mu\nu}} \vec{e}_\lambda \otimes \vec{e}^\mu \otimes \vec{e}^\nu, \]
+and transform it from the $\vec{e}$ basis into the $\unit{e}$ basis.
+This goes in the direction $\vec{e} \to \unit{e}$, which is the opposite way we've gone previously, but the technique remains the exact same.
 We start by defining the transformation $\Lambda$ such that
-\[ e_\mu = \tensor{\Lambda}{_\mu^\nu} \Hat{e}_\nu. \]
+\[ \vec{e}_\mu = \tensor{\Lambda}{_\mu^\nu} \unit{e}_\nu. \]
 We then rewrite our original tensor definition, replace the original bases with their hatted variants and adding the appropriate variant of $\Lambda$, so that
-\[ \tensor{T}{^\lambda_{\mu\nu}}e_\lambda \otimes e^\mu \otimes e^\nu = \tensor{T}{^\lambda_{\mu\nu}} \Big[\tensor{\Lambda}{_\lambda^\alpha}\Hat{e}_\alpha\Big] \otimes \qty[\tensor{\qty(\Lambda^{-1})}{_\beta^\mu}\Hat{e}^\beta] \otimes \qty[\tensor{\qty(\Lambda^{-1})}{_\gamma^\nu}\Hat{e}^\gamma]. \]
+\[ \tensor{T}{^\lambda_{\mu\nu}}\vec{e}_\lambda \otimes \vec{e}^\mu \otimes \vec{e}^\nu = \tensor{T}{^\lambda_{\mu\nu}} \Big[\tensor{\Lambda}{_\lambda^\alpha}\unit{e}_\alpha\Big] \otimes \qty[\tensor{\qty(\Lambda^{-1})}{_\beta^\mu}\unit{e}^\beta] \otimes \qty[\tensor{\qty(\Lambda^{-1})}{_\gamma^\nu}\unit{e}^\gamma]. \]
 Because tensors are multilinear products, we can factor the $\Lambda$ and $\Lambda^{-1}$ out in front of our new bases to get
-\[ \tensor{T}{^\lambda_{\mu\nu}}\Lambda\Lambda^{-1}\Lambda^{-1} \Hat{e}_\lambda \otimes \Hat{e}^\mu \otimes \Hat{e}^\nu. \]
-This means that our component $\tensor{\Hat{T}}{^\lambda_{\mu\nu}} = \tensor{T}{^\lambda_{\mu\nu}}\Lambda\Lambda^{-1}\Lambda^{-1}$.
+\[ \tensor{T}{^\lambda_{\mu\nu}}\Lambda\Lambda^{-1}\Lambda^{-1} \unit{e}_\lambda \otimes \unit{e}^\mu \otimes \unit{e}^\nu. \]
+This means that our component $\tensor{\widehat{T}}{^\lambda_{\mu\nu}} = \tensor{T}{^\lambda_{\mu\nu}}\Lambda\Lambda^{-1}\Lambda^{-1}$.
 This represents the transformation of the basis of the tensor; if we want to transform the component $\tensor{T}{^\lambda_{\mu\nu}}$, we need to use the opposite transformations, since each index of the component is opposite the index on the corresponding basis vector.
 This means that 
-\[ \tensor{T}{^\lambda_{\mu\nu}} = \tensor{\Hat{T}}{^\lambda_{\mu\nu}}\Lambda\Lambda\Lambda^{-1}. \]
-Note that not only are the transformations inverted, but their order is also reversed; to understand why this is, let's examine the full transformation of our tensor from $e$ to $\Hat{e}$.
+\[ \tensor{T}{^\lambda_{\mu\nu}} = \tensor{\widehat{T}}{^\lambda_{\mu\nu}}\Lambda\Lambda\Lambda^{-1}. \]
+Note that not only are the transformations inverted, but their order is also reversed; to understand why this is, let's examine the full transformation of our tensor from $\vec{e}$ to $\unit{e}$.
 By replacing each piece of our original tensor with its transformed variant, we see that
 \begin{align*}
-    \tensor{T}{^\lambda_{\mu\nu}}e_\lambda \otimes e^\mu \otimes e^\nu &= 
-    \tensor{\Hat{T}}{^\lambda_{\mu\nu}}\Lambda\Lambda\Lambda^{-1}\Lambda\Lambda^{-1}\Lambda^{-1} \Hat{e}_\lambda \otimes \Hat{e}^\mu \otimes \Hat{e}^\nu \\
-    &= \tensor{\Hat{T}}{^\lambda_{\mu\nu}}\Hat{e}_\lambda \otimes \Hat{e}^\mu \otimes \Hat{e}^\nu.
+    \tensor{T}{^\lambda_{\mu\nu}}\vec{e}_\lambda \otimes \vec{e}^\mu \otimes \vec{e}^\nu &= 
+    \tensor{\widehat{T}}{^\lambda_{\mu\nu}}\Lambda\Lambda\Lambda^{-1}\Lambda\Lambda^{-1}\Lambda^{-1} \unit{e}_\lambda \otimes \unit{e}^\mu \otimes \unit{e}^\nu \\
+    &= \tensor{\widehat{T}}{^\lambda_{\mu\nu}}\unit{e}_\lambda \otimes \unit{e}^\mu \otimes \unit{e}^\nu.
 \end{align*}
 Just like how using both $\Lambda$ and $\Lambda^{-1}$ to transform an arbitrary vector causes the transformations to cancel, reversing the order of $\Lambda$ when transforming the basis and the components does the same.
 
 \subsection{Covariant and Contravariant Tensors}
 The previous example discussed the transformation of a mixed, rank $(1,2)$ tensor.
 Because the basis vectors of the tensor product space included both vectors and covectors, some parts of the tensor transformed covariantly and some transformed contravariantly.
-This needn't always be the case though; consider a rank $(0,3)$ tensor, whose basis would be of the form $e^\lambda \otimes e^\mu \otimes e^\nu$, and whose component would be $T_{\lambda\mu\nu}$.
+This needn't always be the case though; consider a rank $(0,3)$ tensor, whose basis would be of the form $\vec{e}^\lambda \otimes \vec{e}^\mu \otimes \vec{e}^\nu$, and whose component would be $T_{\lambda\mu\nu}$.
 This tensor has a basis comprised solely of covectors.
 It's basis is then completely contravariant, and its component is entirely covariant.
 This is a \emph{covariant tensor}.

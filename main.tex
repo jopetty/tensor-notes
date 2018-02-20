@@ -12,8 +12,10 @@
 \usepackage{hyperref}
 \usetikzlibrary{intersections}
 \usepackage{tikz-cd}
+\usepackage{bm}
 
 %% Formatting
+\let\varr\vec
 \renewcommand{\vec}[1]{\vb{#1}}
 \newcommand{\tps}[1]{\mathcal{#1}}
 
@@ -24,6 +26,8 @@
   \begingroup\color#1{#2}#3\endgroup
 }
 \makeatother
+
+\newcommand{\unit}[1]{\bm{\hat{\mathbf{#1}}}}
 %% End Formatting
 
 \title{What the $\tensor{F}{^\mu_{c\kappa}}$ is a Tensor?}

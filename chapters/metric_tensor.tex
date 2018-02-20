@@ -2,33 +2,33 @@
 We've created this idea of the inner product $(\cdot,\cdot)$, which maps from $V \times V$ to $\mathbb{F}$.
 There is a striking similarity between this function and rank $(0,2)$ tensors, which also map from $V \times V$ to $\mathbb{F}$.
 In fact, the inner product is one such tensor.
-The $\tps{T}^0_2$ tensor $g_{\mu\nu} e^\mu \otimes e^\nu$ which acts as the inner product is known as the \emph{metric tensor}.
-We can then define the inner product based on the component of this tensor, so $(e_\mu,e_\nu) = g_{\mu\nu}$.
+The $\tps{T}^0_2$ tensor $g_{\mu\nu} \vec{e}^\mu \otimes \vec{e}^\nu$ which acts as the inner product is known as the \emph{metric tensor}.
+We can then define the inner product based on the component of this tensor, so $(\vec{e}_\mu,\vec{e}_\nu) = g_{\mu\nu}$.
 What these values \emph{are} exactly is a more complicated part of the story, and doesn't necessarily have a single definite answer in the context of general relativity, but the point is that we can use this metric tensor as a representation of the inner product.
 Then by the linearity of $g_{\mu,\nu}$ and the inner product,
-\[ (A^\alpha e_\alpha, B^\beta e_\beta) = g_{\mu\nu} A^\alpha \langle e^\mu, e_\alpha \rangle B^\beta \langle e^\nu, e_\beta \rangle = A^\mu B^\nu g_{\mu\nu}, \]
+\[ (A^\alpha \vec{e}_\alpha, B^\beta \vec{e}_\beta) = g_{\mu\nu} A^\alpha \langle \vec{e}^\mu, \vec{e}_\alpha \rangle B^\beta \langle \vec{e}^\nu, \vec{e}_\beta \rangle = A^\mu B^\nu g_{\mu\nu}, \]
 and so we can extend the inner product to arbitrary vectors with the metric tensor.
 
 \section{Linking $V$ and $V^*$}
 Up until this point, we've established that by creating a vector space $V$, we automatically get the dual space $V^*$ without having to do anything else.
 However, although these two spaces are clearly related to one another, there hasn't been a canonical way to relate vectors in $V$ to covectors in $V^*$.
-The only way we've related them thus far is that we prefer to select a basis for $V^*$ such that $\langle e^\nu, e_\mu \rangle = \delta_\mu^\nu$, but this is just a choice we made for convenience; its not an implicit law of mathematics that this must be the basis we choose for the dual space.
-What this means is that if we take an arbitrary vector $A^\mu e_\mu$, we haven't been able to associate it with any particular covector in $V^*$.
+The only way we've related them thus far is that we prefer to select a basis for $V^*$ such that $\langle \vec{e}^\nu, \vec{e}_\mu \rangle = \delta_\mu^\nu$, but this is just a choice we made for convenience; its not an implicit law of mathematics that this must be the basis we choose for the dual space.
+What this means is that if we take an arbitrary vector $A^\mu \vec{e}_\mu$, we haven't been able to associate it with any particular covector in $V^*$.
 All of this changes, however, with the promotion of $V$ to a metric space and the creation of the metric tensor.
 
-We start with an arbitrary vector $A^\alpha e_\alpha \in V$, and the metric tensor for $V$, $g_{\mu\nu} e^\mu \otimes e^\nu \in V^* \otimes V^*$.
+We start with an arbitrary vector $A^\alpha \vec{e}_\alpha \in V$, and the metric tensor for $V$, $g_{\mu\nu} \vec{e}^\mu \otimes \vec{e}^\nu \in V^* \otimes V^*$.
 The metric tensor normally takes two vectors as arguments, but in this case we will supply it with only the vector we've previously chosen.
 If we apply the metric tensor to this vector, something interesting happens; we see that
 \begin{align}
-    g_{\mu\nu} e^\mu \otimes e^\nu (A^\alpha e_\alpha, \cdot) &=
-    g_{\mu\nu} A^\alpha \langle e^\mu, e_\alpha \rangle \langle e^\nu, \cdot \rangle\label{eqn:metric-index-lowering} \\
-    &= g_{\mu, \nu} A^\alpha \delta^\mu_\alpha \langle e^\nu, \cdot \rangle \nonumber \\
-    &= A^\mu g_{\mu\nu} \langle e^\nu, \cdot \rangle \nonumber \\
-    &= A^\mu g_{\mu\nu} e^\nu \in V^* \nonumber.
+    g_{\mu\nu} \vec{e}^\mu \otimes \vec{e}^\nu (A^\alpha \vec{e}_\alpha, \cdot) &=
+    g_{\mu\nu} A^\alpha \langle \vec{e}^\mu, \vec{e}_\alpha \rangle \langle \vec{e}^\nu, \cdot \rangle\label{eqn:metric-index-lowering} \\
+    &= g_{\mu, \nu} A^\alpha \delta^\mu_\alpha \langle \vec{e}^\nu, \cdot \rangle \nonumber \\
+    &= A^\mu g_{\mu\nu} \langle \vec{e}^\nu, \cdot \rangle \nonumber \\
+    &= A^\mu g_{\mu\nu} \vec{e}^\nu \in V^* \nonumber.
 \end{align}
-The result is a covector (since it has a basis of $e^\nu$ and a component of $A^\mu g_{\mu\nu}$) which will map a vector to $\mathbb{F}$.
+The result is a covector (since it has a basis of $\vec{e}^\nu$ and a component of $A^\mu g_{\mu\nu}$) which will map a vector to $\mathbb{F}$.
 Thus the metric tensor allows us to take a vector and find a corresponding covector from the dual space.
-Since the component $A^\mu g_{\mu\nu}$ is already being summed over the $\mu$ index, we often simplify this for brevity's sake into $A_\nu$, making our final covector $A_\nu e^\nu$. 
+Since the component $A^\mu g_{\mu\nu}$ is already being summed over the $\mu$ index, we often simplify this for brevity's sake into $A_\nu$, making our final covector $A_\nu \vec{e}^\nu$. 
 Notice how we started with an upper index component $A^\mu$ and ended up with a lower index component, $A_\nu$; this is known as \emph{contracting} against the metric tensor.
 Used in this way, the metric tensor kind of has two different functional definitions,
 \begin{align*}

@@ -1,10 +1,7 @@
 \chapter{The Realization of a Vector Space or: Introduction to the Architecture of Spacetime}
-At this point, it might be useful to have watched a few of the lessons in the ``What is a Manifold?'' series.\\[1ex]
-
-\noindent
-Let's review what we have covered so far.
-If we have a vector space $V$ over a field $F$, we can find a basis $\{e_\mu\}$ for it.
-The creation of that vector space automatically implies the creation of the dual space $V^*$ and its basis $e^\nu$, chosen so that $\langle e^\nu, e_\mu \rangle = \delta^\nu_\mu$.
+Let's review\footnote{At this point, it might be useful to have watched a few of the lessons in the ``What is a Manifold?'' series.} what we have covered so far.
+If we have a vector space $V$ over a field $F$, we can find a basis $\{\vec{e}_\mu\}$ for it.
+The creation of that vector space automatically implies the creation of the dual space $V^*$ and its basis $\vec{e}^\nu$, chosen so that $\langle \vec{e}^\nu, \vec{e}_\mu \rangle = \delta^\nu_\mu$.
 If we promote $V$ to a metric space by the inclusion of an inner product $(\cdot,\cdot)$, we automatically get a new object called the metric tensor, $g_{\mu\nu} \in \tps{T}^0_2$, defined so that
 \begin{align*}
     (\vec{v},\vec{w}) = g_{\mu\nu}(\vec{v} \otimes \vec{w}).
@@ -15,12 +12,12 @@ The question then becomes ``how do we define the inner product for $V^*$?''
 Well, in a similar fashion to the definition of the basis vectors, we'll use $V$ as an inspiration.
 In particular, we'll define the inner product on $V^*$ such that
 \begin{align*}
-    \underbrace{(A_\mu e^\mu, B_\nu e^\nu)}_{\text{$(\cdot, \cdot)$ on $V^*$}} = \underbrace{(A^\mu e_\mu, B^\nu e_\nu)}_{\text{$(\cdot, \cdot)$ on $V$}}.
+    \underbrace{(A_\mu \vec{e}^\mu, B_\nu \vec{e}^\nu)}_{\text{$(\cdot, \cdot)$ on $V^*$}} = \underbrace{(A^\mu \vec{e}_\mu, B^\nu \vec{e}_\nu)}_{\text{$(\cdot, \cdot)$ on $V$}}.
 \end{align*}
 Just as there is a metric tensor for the vector inner product, we also get to define a metric tensor for the dual space inner product.
 As you might guess, we call this rank $(2,0)$ tensor
 \begin{align*}
-    g^{\mu\nu} e_\mu \otimes e_\nu &: V \otimes V \to \mathbb{F} \\
+    g^{\mu\nu} \vec{e}_\mu \otimes \vec{e}_\nu &: V \otimes V \to \mathbb{F} \\
                &: \tps{T}^2_0 \to \mathbb{F} \\
                &: \vb*{\alpha} \times \vb*{\beta} \mapsto (\vb*{\alpha},\vb*{\beta}).
 \end{align*}
@@ -39,18 +36,18 @@ where we understand that $x = x^\mu$.
 These elements will be known as \emph{coordinates}.
 We say that $f$ is differentiable if we can write
 \begin{align*}
-    \partial_\mu f \equiv \pdv{f}{x^\mu},
+    \bm{\partial}_\mu f \equiv \pdv{f}{x^\mu}
 \end{align*}
-where $\partial_\mu f$ is a symbolic equivalent to the partial derivative of $f$ with respect to $x^\mu$.
-As a quick side note, we choose this notation so that we can contract over it just like with tensors; if you think of $x^\mu$ as the basis and $\partial_\mu$ as the component, then something like $\qty(\partial_\mu f)A^\mu$ could be summed over with Einstein summation.
+where $\bm{\partial}_\mu f$ is a symbolic equivalent to the partial derivative of $f$ with respect to $x^\mu$.
+As a quick side note, we choose this notation so that we can contract over it just like with tensors; if you think of $x^\mu$ as the basis and $\bm{\partial}_\mu$ as the component, then something like $\qty(\partial_\mu f)A^\mu$ could be summed over with Einstein summation.
 Because derivatives are linear operators, we can write that 
-\[ \lambda\partial_\mu f + \lambda\partial_\nu f = \lambda\qty(\partial_\mu + \partial_\nu) f, \]
-where $\lambda \in \mathbb{F}$ and $\qty(\partial_\mu + \partial_\nu)$ is in effect a new differential operator.
-If we wanted to, we could create an operator $\mathcal{L} = a\partial_0 + b\partial_1 + c\partial_2 + d\partial_4$, so $\mathcal{L}$ is a linear combination of our original four partial differential operators.
-Because of the linearity of these differential operators, if we created a set $\{\mathcal{L}\}$ of all possible differential (and therefore linear) operators on a function $f$ of four variables $x^\mu$, this set would be a vector space, with a basis $\{\partial_\mu\}$.
+\[ \lambda\bm{\partial}_\mu f + \lambda\bm{\partial}_\nu f = \lambda\qty(\bm{\partial}_\mu + \bm{\partial}_\nu) f, \]
+where $\lambda \in \mathbb{F}$ and $\qty(\bm{\partial}_\mu + \bm{\partial}_\nu)$ is in effect a new differential operator.
+If we wanted to, we could create an operator $\mathcal{L} = a\bm{\partial}_0 + b\bm{\partial}_1 + c\bm{\partial}_2 + bm{\partial}_4$, so $\mathcal{L}$ is a linear combination of our original four partial differential operators.
+Because of the linearity of these differential operators, if we created a set $\{\mathcal{L}\}$ of all possible differential (and therefore linear) operators on a function $f$ of four variables $x^\mu$, this set would be a vector space, with a basis $\{\bm{\partial}_\mu\}$.
 Let's stipulate that $\lambda$ are all elements of $\mathbb{R}$; then we've just created a realization of a four dimensional, real vector space.
-One interesting thing of note is that $f$ itself is kind of irrelevant here; it doesn't matter if $f$ is a linear function or not, since the differential operator $\partial$ is.
-We care about these operators since they are tools which allow us to create a model of spacetime.
+One interesting thing of note is that $f$ itself is kind of irrelevant here; it doesn't matter if $f$ is a linear function or not, since the differential operator $\bm{\partial}$ is.
+We care about these operators\footnote{Notice that we've been writing $\bm{\partial}_\mu$ in \emph{bold}, to emphasize that the differential operators are ... you guessed it, vectors!} since they are tools which allow us to create a model of spacetime.
 
 \section{Spacetime}
 Throughout the rest of this lesson, we'll be using the following figure as a graphic model for spacetime.
@@ -101,7 +98,7 @@ We can think of the coordinate lines as being like latitude and longitude, or as
 In the diagram shown above, we're only depicting two coordinate lines, leaving the $x^0$ and $x^3$ coordinates of the points implicit.
 Note that in reality, we would be giving names to an infinite number of points, not just the four shown here.
 For each of the points shown, there are an associated set of coordinates.
-If we take point $Q$ as an example, we might say that $Q$ has coordinates $(x^0,x^1,x^2,x^3)$, or more succinctly that $Q$ has coordinates $x^\mu$\footnote{Without rigorously defining it at this point, it's good to recall that we usually think of $x^0$ as being time, while $x^1$ through $x^3$ represent various spatial coordinates. This corresponds nicely with the Minkowsky metric signature.}.
+If we take point $Q$ as an example, we might say that $Q$ has coordinates $(x^0,x^1,x^2,x^3)$, or more succinctly that $Q$ has coordinates\footnote{Without rigorously defining it at this point, it's good to recall that we usually think of $x^0$ as being time, while $x^1$ through $x^3$ represent various spatial coordinates. This corresponds nicely with the Minkowsky metric signature.} $x^\mu$.
 Note that in this case, this doesn't mean that $x^\mu$ is a member of a vector space, since we haven't talked about what the basis vectors would be; we're just using the superscript notation as a shorthand for each of the separate coordinates.
 It's also important to note that we're not talking about any particular coordinate systems here, just a generalized one; it could be spherical or Cartesian or what-not, but for now we really don't care.
 
@@ -111,9 +108,9 @@ We could imagine such a function being given by
 We call any such function a \emph{function on the spacetime}.
 
 \section{Integrating Spacetime and Vector Spaces}
-In the past, we've talked about an abstract vector space $V$ with a basis $\{e_\mu\}$.
+In the past, we've talked about an abstract vector space $V$ with a basis $\{\vec{e}_\mu\}$.
 When discussing spacetime, we'll consider a realization of this vector space;
-this realized vector space $V$ will be a four-dimensional, real vector space with basis $\{\partial_\mu\}$.
+this realized vector space $V$ will be a four-dimensional, real vector space with basis $\{\bm{\partial}_\mu\}$.
 Importantly, we won't be creating just one of these vector spaces.
 We will create a separate vector space \emph{for each point in spacetime}.
 We'll label the vector space by the point it's attached to, so the vector space at $Q$ might be $V_P$.

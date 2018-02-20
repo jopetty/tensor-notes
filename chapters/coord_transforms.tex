@@ -50,13 +50,13 @@ If it is understood what dimensions we need to represent the coordinates of a po
 
 \subsection{The Tangent and Cotangent Spaces}
 We begin with a really simple renaming; up until now, we've been creating our picture of spacetime and then assigning to each point $P$ a vector space $V_P$ a dual space $V^*_P$.
-We defined the basis for $V_P$ to be the collection of differential operators $\{\partial_\mu\}$, and chose a basis $\{\dd{x}^\nu\}$ for $V^*_P$ such that $\langle \dd{x}^\nu, \partial_\mu \rangle = \delta^\nu_\mu$.
+We defined the basis for $V_P$ to be the collection of differential operators $\{\bm{\partial}_\mu\}$, and chose a basis $\{\vec{d}x^\nu\}$ for $V^*_P$ such that $\langle \vec{d}x^\nu, \bm{\partial}_\mu \rangle = \delta^\nu_\mu$.
 We're now going to make the small change of referring to the vector space as the \emph{tangent space} $T_P$, and the dual space as the \emph{cotangent space} $T^*_P$.
-We do this because the coordinate basis $\{\partial_\mu\},\{\dd{x}^\nu\}$ is composed of differential operators, which are fundamentally related to the concept of tangency.
+We do this because the coordinate basis $\{\bm{\partial}_\mu\},\{\vec{d}x^\nu\}$ is composed of differential operators, which are fundamentally related to the concept of tangency.
 Imagine we have some function $\phi(x)$ on our space time and some operator $\mathcal{L} \in T_P$.
 If a vector (our operator $\mathcal{L}$) acts on $\phi$ at a point $P$, then we get the directional derivative of $\phi$ at that point.
-As a more concrete example, let's say that $\phi(x) = (x^0)^2 + \sin x^3$, and our vector field is $\partial_0 + \partial_3$. Then at a point $Q$, we would see a value
-\[ [\partial_0 + \partial_3]\phi(x) = {2x^0 + \cos x^3\mid_Q} = 2q^0 + \cos q^3. \]
+As a more concrete example, let's say that $\phi(x) = (x^0)^2 + \sin x^3$, and our vector field is $\bm{\partial}_0 + \bm{\partial}_3$. Then at a point $Q$, we would see a value
+\[ [\bm{\partial}_0 + \bm{\partial}_3]\phi(x) = {2x^0 + \cos x^3\mid_Q} = 2q^0 + \cos q^3. \]
 Whenever you see a tangent space, remember that it uses the coordinate basis.
 
 It's really important to see that none of this makes any sense until we've established a coordinate system.
@@ -65,13 +65,13 @@ Because the coordinate basis gives us directional derivatives \emph{in the direc
 \subsection{Arbitrary Change of Bases}
 Given a spacetime $\mathcal{S}$, there are an (uncountably) infinite many ways which we can define a coordinate system.
 The entire purpose of general relativity is to show the equivalence of these systems, regardless of the basis chosen or the motion of an observer.
-As it stands now, our spacetime has at every point a tangent space $T_P$ with basis $\{\partial_\mu\}$, a cotangent space $T^*_P$ with basis $\{\dd{x}^\nu\}$, and the tensor product spaces $\tps{T}^p_q$.
+As it stands now, our spacetime has at every point a tangent space $T_P$ with basis $\{\bm{\partial}_\mu\}$, a cotangent space $T^*_P$ with basis $\{\vec{d}x^\nu\}$, and the tensor product spaces $\tps{T}^p_q$.
 However, as long as we choose a set of linearly independent spanning differential operators from $T_P$, we can create our basis however we like.
-Just as with the bases for our regular vector spaces, we can choose a new basis $\partial_{\mu'}$ such that
-\[ \partial_{\mu'} = \tensor{\Lambda}{_{\mu'}^\mu}\partial_\mu, \]
+Just as with the bases for our regular vector spaces, we can choose a new basis $\bm{\partial}_{\mu'}$ such that
+\[ \bm{\partial}_{\mu'} = \tensor{\Lambda}{_{\mu'}^\mu}\bm{\partial}_\mu, \]
 where $\tensor{\Lambda}{_{\mu'}^\mu}$ is of course the linear transformation matrix for these two bases.
 Technically, since the tangent spaces are independent for each point, we no longer have a single transformation matrix, but rather a transformation which is itself a function on spacetime, so a more complete equation would read
-\[ \partial_{\mu'} = \tensor{\Lambda}{_{\mu'}^\mu} (x^\mu)\,\partial_\mu. \]
+\[ \bm{\partial}_{\mu'} = \tensor{\Lambda}{_{\mu'}^\mu} (x^\mu)\,\bm{\partial}_\mu. \]
 
 \subsection{New Coordinate System}
 These transformations deal with the case that we want to choose a new basis for our tangent spaces, but we can also consider the case that we change the whole coordinate system itself.
@@ -126,7 +126,7 @@ This can be thought of visually as drawing new lines on our spacetime diagram to
     \end{tikzpicture}
     \caption{Our spacetime $\mathcal{S}$ with coordinate systems $x^\mu$ and $x^{\mu'}$.}
 \end{figure}
-If we change the coordinates from $(x^\mu)$ to $(x^{\mu'})$, we will necessarily change the coordinate basis as well, since $\{\partial_\mu\}$ is defined with respect to $(x^\mu)$.
+If we change the coordinates from $(x^\mu)$ to $(x^{\mu'})$, we will necessarily change the coordinate basis as well, since $\{\bm{\partial}_\mu\}$ is defined with respect to $(x^\mu)$.
 Notice, however, that the points themselves don't change, although their coordinates in the respective systems will be different.
 The points don't give a damn about which coordinate system is used.
 
@@ -145,20 +145,20 @@ If we want to write $\phi$ as a function of the primed coordinates, we can do so
 Even though we've changed the coordinate system of our spacetime, and consequently the basis for our tangent spaces, the tangent spaces themselves really don't change in much the same way that the points in spacetime don't really change.
 All we've done is to rename the points, but we haven't changed any of the physics associated with what goes on at those points.
 What we have done is change the way that vectors at each point are \emph{written}.
-Since $\{\partial_\mu\} \not= \{\partial_{\mu'}\}$, vectors in our tangent space will be written differently depending on which coordinate basis we choose.
+Since $\{\bm{\partial}_\mu\} \not= \{\bm{\partial}_{\mu'}\}$, vectors in our tangent space will be written differently depending on which coordinate basis we choose.
 We \emph{can}, however, write these new basis vectors as linear combinations of the old basis vectors, which is where the transformation matrix $\tensor{\Lambda}{_{\mu'}^{\mu}}(x)$ comes in.
 The the previous section, we were free to choose $\Lambda(x)$ to be whatever we wanted, since we were just defining a new set of basis vectors while the underlying coordinate system remained the same.
 Now, however, we've added a constraint.
 We need to find the particular $\Lambda$ which is implied by the transformation $f$ between coordinate systems.
-If we choose a particular coordinate transformation $f$, we are then \emph{forced} to use a particular basis transformation $\Lambda$ to find $\{\partial_{\mu'}\}$.
+If we choose a particular coordinate transformation $f$, we are then \emph{forced} to use a particular basis transformation $\Lambda$ to find $\{\bm{\partial}_{\mu'}\}$.
 
 \subsection{Finding $\Lambda$ from $f$}
 Let's go back to our function $\phi(x(x^{\mu'}))$ on our spacetime.
 Since we want the tangent spaces to remain the same under coordinate transformations, we know that we want
-\[ \partial_{\mu'} \phi = \partial_\mu \phi \frac{\partial}{\partial{x^{\mu'}}}x(x^{\mu'}), \]
+\[ \bm{\partial}_{\mu'} \phi = \bm{\partial}_\mu \phi \frac{\partial}{\partial{x^{\mu'}}}x(x^{\mu'}), \]
 by a simple chain rule expansion.
 Since $\phi$ is an arbitrary function, all we really care about is this inner differential, so
-\[ \partial_{\mu'} = \partial_\mu \pdv{}{x^{\mu'}}x(x^{\mu'}). \]
+\[ \bm{\partial}_{\mu'} = \bm{\partial}_\mu \pdv{}{x^{\mu'}}x(x^{\mu'}). \]
 This means that 
 
 \[ \Lambda = \pdv{}{x^{\mu'}} x\qty(x^\mu) = \pdv{x^\mu}{x^{\mu'}}, \]
@@ -172,7 +172,7 @@ As a  $4\times 4$ matrix, we would write $\Lambda(x)$ as
     \end{bmatrix}.
 \]
 \subsection{Transforming the Cotangent Space}
-Just as with our ordinary vector space and dual space, we transform the basis of the cotangent space using the inverse transformation as that of the tangent space, so $\dd{x}^{\mu'} = \pdv{x^{\mu'}}{x^\mu} \dd{x}^\mu$, and use the matrix $\Lambda^{-1}(x)$.
+Just as with our ordinary vector space and dual space, we transform the basis of the cotangent space using the inverse transformation as that of the tangent space, so $\vec{d}x^{\mu'} = \pdv{x^{\mu'}}{x^\mu} \vec{d}x^\mu$, and use the matrix $\Lambda^{-1}(x)$.
 
 \subsection{Requisite Formalism}
 When we discussed tensors and vector spaces and tensor product spaces, we did so with a very good degree of formalism.
